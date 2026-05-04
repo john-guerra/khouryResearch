@@ -1,0 +1,663 @@
+[
+  {
+    "id": "melanie-tory",
+    "name": "Melanie Tory",
+    "location": "Oakland",
+    "give": [
+      "VIS design, Human-AI interaction expertise",
+      "Qual & Quant human subjects studies",
+      "Research resources and support for NTT faculty"
+    ],
+    "get": [
+      "New collaborations & proposals",
+      "Cross-campus connections",
+      "Data monitoring applications",
+      "(especially in health)"
+    ],
+    "primary_area": "Visualization",
+    "secondary_area": "HCC",
+    "keywords": [
+      "visual analytics",
+      "HCAI"
+    ],
+    "email": "m.tory@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/melanie-tory.jpg",
+    "slide_index": 2
+  },
+  {
+    "id": "brianna-dym",
+    "name": "Brianna Dym",
+    "location": "Portland",
+    "give": [
+      "Expertise in qualitative research - interviews, discourse analysis",
+      "Nontraditional CS education perspective, as a learner and educator",
+      "Privacy & Safety in HCI",
+      "Rurality in CS!"
+    ],
+    "get": [
+      "Collaborators I can recommend student project seekers to!",
+      "Folks looking for an expert perspective from one of my areas",
+      "Connections for privacy research!"
+    ],
+    "primary_area": "Broadening Participation in Computing",
+    "secondary_area": "Human-Computer Interaction",
+    "keywords": [
+      "privacy",
+      "safety",
+      "ethics",
+      "empowerment"
+    ],
+    "email": "b.dym@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/brianna-dym.jpg",
+    "slide_index": 3
+  },
+  {
+    "id": "michael-correll",
+    "name": "Michael Correll",
+    "location": "Portland",
+    "give": [
+      "Datavis design skills",
+      "Critical lens on data practices + info design",
+      "Broad domain experiences"
+    ],
+    "get": [
+      "Collaborators, esp. In digital humanities, bioinformatics",
+      "Cool data",
+      "Grant $$$"
+    ],
+    "primary_area": "Visualization",
+    "secondary_area": "HCC",
+    "keywords": [
+      "information visualization",
+      "statistical graphics",
+      "data ethics"
+    ],
+    "email": "m.correll@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/michael-correll.jpg",
+    "slide_index": 4
+  },
+  {
+    "id": "aanchan-mohan",
+    "name": "Aanchan Mohan",
+    "location": "Vancouver",
+    "give": [
+      "Audio and speech processing expertise",
+      "Cloud deployment and working with the research cluster",
+      "Look into implementation and user issues with machine learning models e.g. model caching"
+    ],
+    "get": [
+      "Collaboration in research with atypical speakers",
+      "Learn more about real-time machine learning use cases",
+      "Access to funding resources in Canada"
+    ],
+    "primary_area": "Speech, audio and language",
+    "secondary_area": "Natural language processing",
+    "keywords": [
+      "speech recognition",
+      "voice conversion",
+      "NLP",
+      "large language models",
+      "machine learning",
+      "Audio LLMs"
+    ],
+    "email": "aa.mohan@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/aanchan-mohan.jpg",
+    "slide_index": 5
+  },
+  {
+    "id": "hazra-imran",
+    "name": "Hazra Imran",
+    "location": "Vancouver",
+    "give": [
+      "Design of adaptive learning systems (policy-driven scaffolding, RL-based personalization)",
+      "Expertise in programming and SQL education research (classroom deployments, real learners)",
+      "Multimodal learning analytics (keystroke logs, behavioral traces, affect signals)",
+      "End-to-end system building (LLMs, backend infra, data pipelines, dashboards)",
+      "Study design + empirical evaluation (HCI / AIED / CS education contexts)"
+    ],
+    "get": [
+      "Collaborations on real-time adaptive AI (especially beyond education domains)",
+      "Access to diverse learner populations or applied deployment contexts",
+      "Partnerships for multimodal sensing (affect, physiological signals, interaction data)",
+      "Co-advisorship opportunities for MS/PhD students",
+      "Funding and cross-institution collaborations (Canada / US)",
+      "Joint publications in CHI / ICER / AIED / L@S"
+    ],
+    "primary_area": "Human-centered adaptive AI systems",
+    "secondary_area": "Computing education, HCI",
+    "keywords": [
+      "adaptive learning",
+      "emotion-aware systems",
+      "SQL education",
+      "debugging",
+      "gamification",
+      "interaction traces",
+      "reinforcement learning"
+    ],
+    "email": "h.imran@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/hazra-imran.jpg",
+    "slide_index": 6
+  },
+  {
+    "id": "felix-muzny",
+    "name": "Felix Muzny",
+    "location": "Boston",
+    "give": [
+      "Access to TAs/TA committee",
+      "Connections to the Center for Inclusive Computing and various kinds of data",
+      "Connections to digital humanists in English/Journalism/etc.",
+      "Experience with education research and humanistic inquiry"
+    ],
+    "get": [
+      "Collaborator(s) (likely HCI?) to study how students/people learn about (*not use*) LLMs/AI models",
+      "Anyone else working at the intersection of CSEd & NLP?",
+      "Friends/community :)"
+    ],
+    "primary_area": "Broadening Participation",
+    "secondary_area": "CSEd",
+    "keywords": [
+      "Digital Humanities & NLP"
+    ],
+    "email": "",
+    "links": [],
+    "photo": "data/photos/felix-muzny.jpg",
+    "slide_index": 7
+  },
+  {
+    "id": "albert-lionelle",
+    "name": "Albert Lionelle",
+    "location": "Online",
+    "give": [
+      "Expertise in CS Pedagogies",
+      "College curriculum design, complexity analysis",
+      "Intro sequence design, implementation",
+      "Psychology and cognitive models related to computational thinking and learning",
+      "“Learning to learn” computer science",
+      "Grading practices and how they affect various student groups and learning mindsets",
+      "Experience with measure impact on both UG and GR CS education",
+      "Easy access to build curricular and university comparison reports",
+      "Bridge Program / MS Pathways research areas"
+    ],
+    "get": [
+      "Developing and documenting repeatable evidence driven and measurable inclusive pedagogies to share with other campuses and groups",
+      "Expanding feedback mechanisms within autograders and structured tools to support instructors",
+      "Expanding curricular complexity tools to simplify and automate the process of data collection and analysis"
+    ],
+    "primary_area": "CS Education",
+    "secondary_area": "Broadening Participation",
+    "keywords": [
+      "Curricular Design",
+      "Curricular and Learning Analytics"
+    ],
+    "email": "a.lionelle@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/albert-lionelle.jpg",
+    "slide_index": 8
+  },
+  {
+    "id": "huihui-wang",
+    "name": "Huihui Wang",
+    "location": "Arlington",
+    "give": [
+      "Suggestions about NSF proposal preparation of some programs of EDU and TIP using my knowledge and network of the NSF as a former program director",
+      "Promote or advocate our practices/inititatives at ASEE, and IEEE Education Society as a board member and ACM EIGTRUST as an officer"
+    ],
+    "get": [
+      "Learn others’ initiatives and best practices",
+      "Collaboration cross the fields",
+      "Broaden my networking"
+    ],
+    "primary_area": "Computing and Engineering Education",
+    "secondary_area": "CyberAI Innovation and Partnerships",
+    "keywords": [
+      "AIoT",
+      "AI for cybersecurity",
+      "computing education",
+      "engineering education"
+    ],
+    "email": "huih.wang@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/huihui-wang.jpg",
+    "slide_index": 9
+  },
+  {
+    "id": "john-a-guerra-gomez",
+    "name": "John A. Guerra Gomez",
+    "location": "Oakland",
+    "give": [
+      "Information visualization problem abstraction (i.e. understand users, data, tasks) and how to solve them",
+      "Actual implementations of rich and interactive information visualization prototypes to solve them",
+      "AI Coding"
+    ],
+    "get": [
+      "Interdisciplinary collaborations, that includes: ▸ complex data, ▸rich analysis tasks, and ▸users willing to work to extract insights",
+      "Collaborations for grant proposals"
+    ],
+    "primary_area": "Information Visualization",
+    "secondary_area": "HCC",
+    "keywords": [
+      "InfoVis",
+      "A11y",
+      "AI Coding"
+    ],
+    "email": "jguerra@northeastern.edu",
+    "links": [
+      "https://johnguerra.co"
+    ],
+    "photo": "data/photos/john-a-guerra-gomez.jpg",
+    "slide_index": 10
+  },
+  {
+    "id": "miguel-fuentes-cabrera",
+    "name": "Miguel Fuentes-Cabrera",
+    "location": "Oakland",
+    "give": [
+      "Connections to National Labs. (ORNL, PNNL, LBNL)",
+      "Access to real-world research projects",
+      "Broadening participation in CS (research collaborations designed to open doors in STEM)"
+    ],
+    "get": [
+      "Collaborations with faculty across Northeastern campuses",
+      "Opportunities to integrate projects into practicum and capstone courses",
+      "Collaborations in AI for social impact"
+    ],
+    "primary_area": "ML + Materials Science",
+    "secondary_area": "ML + Microbiology",
+    "keywords": [
+      "ML",
+      "materials discovery",
+      "proteins",
+      "microbes"
+    ],
+    "email": "m.fuentes-cabreral@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/miguel-fuentes-cabrera.jpg",
+    "slide_index": 11
+  },
+  {
+    "id": "joydeep-mitra",
+    "name": "Joydeep Mitra",
+    "location": "Boston",
+    "give": [
+      "Experience with several aspects of software engineering research (e.g., secure software design, testing, ethical design frameworks )",
+      "Access to CS classrooms for conducting empirical studies related to CS education research",
+      "Experience with working in interdisciplinary fields such as digital humanities"
+    ],
+    "get": [
+      "Explore/Develop research ideas in the software engineering/computer science education space",
+      "Develop pedagogical tools and methods related (but not restricted) to study the use of AI-assisted programming by students",
+      "Opportunities for collaborative grant writing"
+    ],
+    "primary_area": "Software Engineering",
+    "secondary_area": "CS Education",
+    "keywords": [
+      "Digital Humanities"
+    ],
+    "email": "j.mitra@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/joydeep-mitra.jpg",
+    "slide_index": 12
+  },
+  {
+    "id": "matt-higger",
+    "name": "Matt Higger",
+    "location": "Boston",
+    "give": [
+      "Applications for new tool: find the area of the brain which changes due to age / diagnosis etc.  It needn’t be medical (e.g. how is this riverbed changing year-to-year from satellite images?)",
+      "Or HCI feedback on our unwieldy vizualization (feel free to just email me and tell me what I’m doing wrong, can you tell I haven’t taken an HCI course?)",
+      "Seeking collaborators / applications for new AAC tool: use eye gaze / face or hand poses to input letters to computer (student research scheduled for Fall 2026) old youtube demo.  Low time commitment / relevant expertise collaborators very welcome here!"
+    ],
+    "get": [
+      "Vibe Coding “Expertise”",
+      "Or, at least, interest in AI driven development",
+      "Pedagogical Tool Development",
+      "Storing math problems/solutions across semesters",
+      "Computing Final Grades",
+      "Enthusiastically mediocre jokes",
+      "Support in any way you think we might intersect"
+    ],
+    "primary_area": "MRI Analysis (ML & Signal Processing)",
+    "secondary_area": "Augmentative and Alternative Communication (Info Theory & HCI)",
+    "keywords": [],
+    "email": "mhigger@ccs.neu.edu",
+    "links": [],
+    "photo": "data/photos/matt-higger.jpg",
+    "slide_index": 13
+  },
+  {
+    "id": "tala-talaei-khoei",
+    "name": "Tala Talaei Khoei",
+    "location": "Portland",
+    "give": [
+      "Expertise in cybersecurity, AI, ML, and NLP, including problem abstraction and solution design",
+      "Development of intelligent systems and interactive, data-driven prototypes",
+      "AI-driven coding and modeling for tasks such as threat detection, anomaly analysis, and text analytics"
+    ],
+    "get": [
+      "Collaborations with faculty across Northeastern campuses on interdisciplinary research and projects",
+      "Opportunities to integrate real-world projects into practicum and capstone courses",
+      "Partnerships focused on AI for social impact, particularly in areas related to security, ethics, and societal well-being"
+    ],
+    "primary_area": "AI, ML, NLP, and Computer Vision",
+    "secondary_area": "Cyber-Security",
+    "keywords": [],
+    "email": "t.talaeikhoei@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/tala-talaei-khoei.jpg",
+    "slide_index": 14
+  },
+  {
+    "id": "mohit-singhal",
+    "name": "Mohit Singhal",
+    "location": "Boston",
+    "give": [
+      "Expertise in content moderation of social media and evaluating changes of moderation on society",
+      "Expertise in data analysis and creation of tools to obtain social media data",
+      "Expertise in understanding security and privacy concerns of users on social media platforms and disentangling causal insights."
+    ],
+    "get": [
+      "Collaborations with other faculty members in the areas and writing research grants.",
+      "Collaborations on interdisciplinary work tying content moderation, law and ethics within NEU and with other Universities and Centers such as the Harvard Klein Center",
+      "Co-advisorship opportunities (MS/PhD)!",
+      "Collaborations in HCI related to social media."
+    ],
+    "primary_area": "HCI, Security & Privacy",
+    "secondary_area": "Computational Social Science",
+    "keywords": [],
+    "email": "m.singhal@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/mohit-singhal.jpg",
+    "slide_index": 15
+  },
+  {
+    "id": "tehmina-amjad",
+    "name": "Tehmina Amjad",
+    "location": "Silicon Valley",
+    "give": [
+      "AI/ML, NLP, and Information Retrieval expertise",
+      "Interdisciplinary AI applications (geoscience, scientometrics)",
+      "Mentorship through SPARK, capstones",
+      "Applied ML guidance: datasets, evaluation, real-world problems"
+    ],
+    "get": [
+      "Interdisciplinary collaborations (AI + science)",
+      "Joint proposals (NSF, cross-campus initiatives)",
+      "New domains for explainable & trustworthy AI",
+      "Student research opportunities and datasets"
+    ],
+    "primary_area": "AI/ML for Information Retrieval",
+    "secondary_area": "AI for Geoscience",
+    "keywords": [],
+    "email": "t.amjad@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/tehmina-amjad.jpg",
+    "slide_index": 16
+  },
+  {
+    "id": "maryam-tanha",
+    "name": "Maryam Tanha",
+    "location": "Vancouver",
+    "give": [
+      "Expertise in static and dynamic analysis of mobile malware, especially Android malware",
+      "Using XAI techniques to explain the results of ML-based malware detectors and design robust and trustworthy detectors",
+      "Modern self-supervised learning for applications in  cybersecurity"
+    ],
+    "get": [
+      "Cross-campus collaboration in research (e.g., cybersecurity, healthcare, critical infrastructure protection)",
+      "Collaboration in writing proposals and applying for research grants.",
+      "Access to research funding resources/grants in Canada"
+    ],
+    "primary_area": "Android malware detection and analysis",
+    "secondary_area": "Explainable AI, Network security, LLM’s security, Critical infrastructure protection",
+    "keywords": [
+      "Malware detection",
+      "AI for cybersecurity",
+      "LLM’s security",
+      "XAI"
+    ],
+    "email": "m.tanha@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/maryam-tanha.jpg",
+    "slide_index": 17
+  },
+  {
+    "id": "mahsan-nourani",
+    "name": "Mahsan Nourani",
+    "location": "Portland",
+    "give": [
+      "Expertise in Human-AI collaboration (trust, cognitive biases, mental models, RAI design)",
+      "Mixed methods user studies",
+      "Full-cycle UI/UX design",
+      "(research → prototyping → evaluation)",
+      "Domain-specific AI design"
+    ],
+    "get": [
+      "Grant $$$ + co-PI gigs",
+      "(help your early-career colleague out! :D)",
+      "Collaborations on AI literacy interventions",
+      "Respoinsible AI in the wild, e.g., AI in Policy, Research on AI’s societal impacts",
+      "RAI in healthcare"
+    ],
+    "primary_area": "Human-centered AI (HCC)",
+    "secondary_area": "Visual Analytics (Vis)",
+    "keywords": [
+      "Responsible AI",
+      "UI/UX",
+      "AI Literacy"
+    ],
+    "email": "m.nourani@northeastern.edu",
+    "links": [
+      "https://mahsan.page"
+    ],
+    "photo": "data/photos/mahsan-nourani.jpg",
+    "slide_index": 18
+  },
+  {
+    "id": "deahan-yu",
+    "name": "Deahan Yu",
+    "location": "Boston",
+    "give": [
+      "NLP/ML in health",
+      "Information Extraction from text",
+      "Broad applications of data science"
+    ],
+    "get": [
+      "Tips/guidance/collaboration on grant writing (as a teaching faculty)",
+      "Project collaboration opportunities"
+    ],
+    "primary_area": "NLP/ML in Health",
+    "secondary_area": "Computational Social Science",
+    "keywords": [],
+    "email": "d.yu@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/deahan-yu.jpg",
+    "slide_index": 19
+  },
+  {
+    "id": "jessica-staddon",
+    "name": "Jessica Staddon",
+    "location": "Oakland",
+    "give": [
+      "Experience with research and safety operations in industry",
+      "Privacy-enhancing technologies",
+      "User studies & experiment design"
+    ],
+    "get": [
+      "Course coordination across campuses",
+      "NSF co-PIs",
+      "Research collaborations"
+    ],
+    "primary_area": "AI Safety/Privacy/Security",
+    "secondary_area": "HCI",
+    "keywords": [],
+    "email": "j.staddon@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/jessica-staddon.jpg",
+    "slide_index": 20
+  },
+  {
+    "id": "youna-jung",
+    "name": "Youna Jung",
+    "location": "Arlington",
+    "give": [
+      "Access Controls, Privacy, Trust",
+      "Adaptive AI, Collaborative AI",
+      "AI for Assistive Technology",
+      "AI in Learning and Teaching",
+      "Responsible AI/AI Ethics/AI Persuasion"
+    ],
+    "get": [
+      "Collaborative Research & Grant",
+      "Cross-Campus Connections",
+      "Interdisciplinary Research Proposal"
+    ],
+    "primary_area": "AI, Cybersecurity, Ethics",
+    "secondary_area": "Smart City, eHealth, Cognition, Policies",
+    "keywords": [],
+    "email": "yo.jung@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/youna-jung.jpg",
+    "slide_index": 21
+  },
+  {
+    "id": "gabriela-gongora-svartzman",
+    "name": "Gabriela Gongora-Svartzman",
+    "location": "Miami",
+    "give": [
+      "GeoAI expertise",
+      "Responsible AI / AI for social impact",
+      "Multidisciplinary research (AI + OR + Eng)",
+      "Expertise in integrating real-world project into the classroom or even clients.",
+      "Experience with teaching and learning workshops, outreach, communities",
+      "AI in the classroom",
+      "ML"
+    ],
+    "get": [
+      "Cross-campus connections",
+      "Opportunities to integrate projects into practicum or similar courses",
+      "Learn from other’s research and experiences",
+      "Anyone interested in doing work for social impact"
+    ],
+    "primary_area": "GeoAI for Climate change, Responsible AI, Social Impact",
+    "secondary_area": "Pedagogical Innovation, Teaching + Learning",
+    "keywords": [
+      "Research key words: smart cities, climate, teaching, social impact work"
+    ],
+    "email": "g.gongorasvartzman@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/gabriela-gongora-svartzman.jpg",
+    "slide_index": 22
+  },
+  {
+    "id": "oscar-veliz",
+    "name": "Oscar Veliz",
+    "location": "Seattle",
+    "give": [
+      "Expertise creating online video lessons",
+      "Created Khoury course on Quantum Computing",
+      "Expert in Accessibility",
+      "AI in the classroom"
+    ],
+    "get": [
+      "Awareness of current NEU research",
+      "Co-PI opportunities / collabs",
+      "Teaching best practices"
+    ],
+    "primary_area": "CS Pedagogy, AI",
+    "secondary_area": "Numerical Analsys, Quantum Computing, Game Theory",
+    "keywords": [
+      "Education",
+      "Quantum",
+      "Numerical"
+    ],
+    "email": "o.veliz@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/oscar-veliz.jpg",
+    "slide_index": 23
+  },
+  {
+    "id": "logan-schmidt",
+    "name": "Logan Schmidt",
+    "location": "Vancouver",
+    "give": [
+      "Experience with IRB and human subjects research",
+      "CS education and pedagogy context",
+      "Master's student projects for research, particularly in systems and privacy studies",
+      "Writing proposals"
+    ],
+    "get": [
+      "Collaborators with an orientation towards inclusive CS education",
+      "Collaborators interested in studying socio-technical systems and their impact on privacy"
+    ],
+    "primary_area": "Computer Science Education",
+    "secondary_area": "Privacy studies",
+    "keywords": [
+      "CS education"
+    ],
+    "email": "l.schmidt@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/logan-schmidt.jpg",
+    "slide_index": 24
+  },
+  {
+    "id": "lama-hamandi",
+    "name": "Lama Hamandi",
+    "location": "Silicon Valley",
+    "give": [
+      "Algorithms & Data structure",
+      "Hardware activities for Align/systems courses"
+    ],
+    "get": [
+      "Adaptive AI",
+      "Multi-player games",
+      "Writing proposals"
+    ],
+    "primary_area": "CS Education",
+    "secondary_area": "HCI",
+    "keywords": [
+      "computing education",
+      "game-based learning",
+      "algorithms",
+      "learner experience",
+      "UI/UX",
+      "adaptive learning"
+    ],
+    "email": "l.hamandi@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/lama-hamandi.jpg",
+    "slide_index": 25
+  },
+  {
+    "id": "michelle-borkin",
+    "name": "Michelle Borkin",
+    "location": "Boston",
+    "give": [
+      "Visualization expertise & collaboration",
+      "Service-Learning teaching",
+      "Domain expertise is in the sciences (astronomy, physics, biology, medical imaging)",
+      "New collaborations: I want to help you make the best visualizations!",
+      "Research expertise in education"
+    ],
+    "get": [],
+    "primary_area": "Data Visualization Secondary Research Areas: HCI",
+    "secondary_area": "",
+    "keywords": [
+      "multidimensional data",
+      "3D data and XR",
+      "tree & network visualization",
+      "perception and cognition theory",
+      "accessibility",
+      "and visualization for social good",
+      "CS education."
+    ],
+    "email": "m.borkin@northeastern.edu",
+    "links": [],
+    "photo": "data/photos/michelle-borkin.jpg",
+    "slide_index": 26
+  }
+]

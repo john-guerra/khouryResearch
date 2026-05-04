@@ -1,0 +1,796 @@
+// Khoury Researcher Connections — D3 force graph with three layer toggles,
+// search/location filters, edge hover tooltips with "why this connection",
+// and a side panel showing per-researcher details and top connections per layer.
+//
+// All dynamic UI is built with DOM methods (createElement + textContent) so
+// we never touch innerHTML — escaping is guaranteed structurally.
+
+const LAYERS = ["give_get", "topic", "keyword"];
+const LAYER_LABELS = {
+  give_get: "Give → Get",
+  topic: "Topic similarity",
+  keyword: "Shared keywords",
+};
+
+const state = {
+  data: null,
+  active: new Set(["give_get"]),
+  searchTerm: "",
+  selectedLocations: new Set(),
+  selectedId: null,
+  focusOnSelection: true,        // on by default — clicking a researcher dims the rest
+  showLabels: false,
+  nodeIndex: new Map(),
+  edgesByNode: { give_get: new Map(), topic: new Map(), keyword: new Map() },
+  // populated in buildGraph for the simulation/animation code to reference.
+  allLinkData: [],
+  nodes: [],
+};
+
+const svg = d3.select("#graph");
+const linkGroup = svg.append("g").attr("class", "links");
+const nodeGroup = svg.append("g").attr("class", "nodes");
+const defs = svg.append("defs");
+
+// Arrowhead for give→get edges.
+// IMPORTANT: markerUnits="userSpaceOnUse" — without it, SVG defaults to
+// strokeWidth-relative sizing, so markerWidth and refX scale with each line's
+// stroke (which varies with edge score). That made arrows float off the node.
+// Geometry with userSpaceOnUse: viewBox is 10×10, scaled to markerWidth user
+// units. Tip at viewBox (10, 0) = (markerWidth, 0). refX places the marker so
+// (refX_viewBox * markerWidth/10) aligns with line endpoint. Gap from line
+// endpoint to arrow tip = markerWidth * (refX/10 - 1). With markerWidth=8 and
+// refX=32: gap = 8 * 2.2 = 17.6 ≈ node radius (18).
+defs.append("marker")
+  .attr("id", "arrow-give-get")
+  .attr("viewBox", "0 -5 10 10")
+  .attr("refX", 32)
+  .attr("refY", 0)
+  .attr("markerUnits", "userSpaceOnUse")
+  .attr("markerWidth", 8)
+  .attr("markerHeight", 8)
+  .attr("orient", "auto")
+  .append("path")
+  .attr("d", "M0,-5L10,0L0,5")
+  .attr("fill", "var(--give-get)");
+
+let simulation = null;
+const tooltip = makeTooltip();
+
+// Semantic zoom: the d3.zoom transform is applied to POSITIONS only, not
+// to a parent <g>. Photos, labels, and stroke widths keep their absolute
+// pixel size — zooming reveals more detail by spreading the layout, not by
+// magnifying pixels. tx/ty also do panning since transform.applyX bakes in
+// translation.
+let zoomTransform = d3.zoomIdentity;
+function projectX(d) { return zoomTransform.applyX(xScale(d.x)); }
+function projectY(d) { return zoomTransform.applyY(yScale(d.y)); }
+
+// Virtual scales mapping simulation coordinates → screen coordinates.
+// Domain is recomputed on each tick (lerped for smoothness) to follow the
+// current bounding box of all nodes; range is the viewport minus a margin
+// so node photos and labels always render fully inside the canvas.
+const xScale = d3.scaleLinear();
+const yScale = d3.scaleLinear();
+let xDomain = [-200, 200];
+let yDomain = [-200, 200];
+const NODE_R = 26;
+const VIEWPORT_MARGIN = NODE_R + 22;     // photo radius + halo + label baseline
+const VIEWPORT_BOTTOM_MARGIN = NODE_R + 38; // extra room for the label below the node
+const DOMAIN_PAD = 20;                    // simulation-space padding inside the domain
+const DOMAIN_LERP = 0.12;                 // 0..1; higher = scale tracks faster but jitters more
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+// Per-layer score normalization. Each layer has a different natural range
+// (give→get cosine ≈ 0.3–0.7, topic cosine ≈ 0.4–0.75, keyword Jaccard ≈ 0.08–0.3),
+// so a single linear opacity formula fades the keyword and topic layers into
+// invisibility. Normalize score to 0..1 inside each layer's range first.
+const SCORE_RANGE = {
+  give_get: [0.30, 0.70],
+  topic:    [0.40, 0.75],
+  keyword:  [0.08, 0.30],
+};
+function normalizedScore(d) {
+  const [lo, hi] = SCORE_RANGE[d.layer] || [0, 1];
+  return Math.max(0, Math.min(1, (d.score - lo) / Math.max(0.0001, hi - lo)));
+}
+function baseStrokeOpacity(d) { return 0.5 + normalizedScore(d) * 0.4; }   // 0.5 → 0.9
+function baseStrokeWidth(d)   { return 1.5 + normalizedScore(d) * 2.0; }   // 1.5 → 3.5
+
+function updateScales() {
+  if (!state.nodes.length) return;
+  const xs = state.nodes.map((n) => n.x);
+  const ys = state.nodes.map((n) => n.y);
+  let xMin = Math.min(...xs), xMax = Math.max(...xs);
+  let yMin = Math.min(...ys), yMax = Math.max(...ys);
+  // Avoid degenerate domains when all nodes are on a single line.
+  if (xMax - xMin < 1) { xMax += 50; xMin -= 50; }
+  if (yMax - yMin < 1) { yMax += 50; yMin -= 50; }
+  xMin -= DOMAIN_PAD; xMax += DOMAIN_PAD;
+  yMin -= DOMAIN_PAD; yMax += DOMAIN_PAD;
+
+  xDomain = [lerp(xDomain[0], xMin, DOMAIN_LERP), lerp(xDomain[1], xMax, DOMAIN_LERP)];
+  yDomain = [lerp(yDomain[0], yMin, DOMAIN_LERP), lerp(yDomain[1], yMax, DOMAIN_LERP)];
+
+  const w = svg.node().clientWidth;
+  const h = svg.node().clientHeight;
+  xScale.domain(xDomain).range([VIEWPORT_MARGIN, w - VIEWPORT_MARGIN]);
+  yScale.domain(yDomain).range([VIEWPORT_MARGIN, h - VIEWPORT_BOTTOM_MARGIN]);
+}
+
+function initPanels() {
+  // Default: on mobile/narrow viewports both panels start collapsed.
+  if (window.innerWidth <= 768) {
+    document.body.classList.add("controls-collapsed", "detail-collapsed");
+  }
+  document.getElementById("toggle-controls").addEventListener("click", () => {
+    document.body.classList.toggle("controls-collapsed");
+    // On mobile, only one overlay panel open at a time.
+    if (window.innerWidth <= 768 && !document.body.classList.contains("controls-collapsed")) {
+      document.body.classList.add("detail-collapsed");
+    }
+  });
+  document.getElementById("toggle-detail").addEventListener("click", () => {
+    document.body.classList.toggle("detail-collapsed");
+    if (window.innerWidth <= 768 && !document.body.classList.contains("detail-collapsed")) {
+      document.body.classList.add("controls-collapsed");
+    }
+  });
+  // Tap on the backdrop closes the open panel
+  document.body.addEventListener("click", (e) => {
+    if (window.innerWidth > 768) return;
+    if (e.target !== document.body) return;
+    document.body.classList.add("controls-collapsed", "detail-collapsed");
+  });
+  // Whenever the window crosses the 768px boundary, rebalance state so
+  // we don't end up with both mobile overlays open or both desktop columns
+  // collapsed by leftover state.
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      // Desktop: panels visible by default unless user explicitly collapsed
+      // (we don't have that distinction; simplest: open both when crossing up)
+      // Actually, keep current state — it's reasonable.
+    }
+  });
+}
+
+async function init() {
+  initPanels();
+  const res = await fetch("data/graph.json");
+  state.data = await res.json();
+  state.data.nodes.forEach((n) => state.nodeIndex.set(n.id, n));
+
+  for (const layer of LAYERS) {
+    const map = state.edgesByNode[layer];
+    for (const e of state.data.edges[layer]) {
+      const list = (id) => map.get(id) || (map.set(id, []), map.get(id));
+      list(e.source).push({ ...e, otherId: e.target });
+      if (e.directed) {
+        list(e.target).push({ ...e, otherId: e.source, incoming: true });
+      } else {
+        list(e.target).push({ ...e, otherId: e.source });
+      }
+    }
+  }
+
+  document.getElementById("meta-counts").textContent =
+    `${state.data.meta.n_researchers} researchers • model: ${state.data.meta.model}`;
+
+  buildLocationChips();
+  bindControls();
+  buildGraph();
+}
+
+function buildLocationChips() {
+  const container = document.getElementById("location-chips");
+  while (container.firstChild) container.removeChild(container.firstChild);
+
+  // Count researchers per location for the scented bars + parenthetical counts.
+  const counts = new Map();
+  for (const n of state.data.nodes) {
+    counts.set(n.location, (counts.get(n.location) || 0) + 1);
+  }
+  const max = Math.max(1, ...counts.values());
+
+  for (const loc of state.data.filters.locations) {
+    const count = counts.get(loc) || 0;
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "chip";
+    chip.style.setProperty("--scent", `${(count / max) * 100}%`);
+    const label = document.createElement("span");
+    label.textContent = loc;
+    chip.appendChild(label);
+    const cnt = document.createElement("span");
+    cnt.className = "count-paren";
+    cnt.textContent = `(${count})`;
+    chip.appendChild(cnt);
+    chip.addEventListener("click", () => {
+      if (state.selectedLocations.has(loc)) state.selectedLocations.delete(loc);
+      else state.selectedLocations.add(loc);
+      chip.classList.toggle("active", state.selectedLocations.has(loc));
+      applyFilters();
+    });
+    container.appendChild(chip);
+  }
+}
+
+function bindControls() {
+  for (const checkbox of document.querySelectorAll("[data-layer]")) {
+    checkbox.addEventListener("change", () => {
+      const layer = checkbox.dataset.layer;
+      if (checkbox.checked) state.active.add(layer);
+      else state.active.delete(layer);
+      // Animated re-layout: stagger node release so the graph reorganizes
+      // one researcher at a time instead of jumping all at once.
+      animateLayerChange();
+      updateLayerCounts();
+    });
+  }
+
+  document.getElementById("show-labels").addEventListener("change", (e) => {
+    state.showLabels = e.target.checked;
+    document.querySelector("svg#graph").classList.toggle("show-labels", state.showLabels);
+  });
+
+  document.getElementById("search").addEventListener("input", (e) => {
+    state.searchTerm = e.target.value.trim().toLowerCase();
+    applyFilters();
+  });
+
+  document.getElementById("reset-filters").addEventListener("click", () => {
+    state.searchTerm = "";
+    state.selectedLocations.clear();
+    document.getElementById("search").value = "";
+    document.querySelectorAll("#location-chips .chip").forEach((c) => c.classList.remove("active"));
+    applyFilters();
+  });
+}
+
+function updateLayerCounts() {
+  for (const layer of LAYERS) {
+    document.getElementById(`count-${layer}`).textContent = state.data.edges[layer].length;
+  }
+}
+
+function buildGraph() {
+  const { nodes, edges } = state.data;
+  const allEdges = [...edges.give_get, ...edges.topic, ...edges.keyword];
+
+  const nodeById = state.nodeIndex;
+  const linkData = allEdges.map((e) => ({
+    ...e,
+    source: nodeById.get(e.source),
+    target: nodeById.get(e.target),
+  }));
+  state.allLinkData = linkData;
+  state.nodes = nodes;
+
+  const R = 18;
+
+  // We clip headshots to a circle via CSS clip-path on .face-img — works
+  // reliably with the per-node transforms. SVG <clipPath> needs explicit
+  // clipPathUnits handling that interacts oddly with d3-force translates.
+
+  // Wider invisible hit-area on each link so hovering is easy at thin strokes.
+  const linkSel = linkGroup.selectAll("g.link-grp")
+    .data(linkData, (d) => `${d.source.id}|${d.target.id}|${d.layer}`)
+    .enter()
+    .append("g")
+    .attr("class", "link-grp")
+    .style("pointer-events", "stroke");
+
+  linkSel.append("line")
+    .attr("class", "link-hit")
+    .attr("stroke", "transparent")
+    .attr("stroke-width", 12)
+    .attr("fill", "none")
+    .style("pointer-events", "stroke")
+    .on("mousemove", (event, d) => showEdgeTooltip(event, d))
+    .on("mouseleave", () => tooltip.hide());
+
+  linkSel.append("line")
+    .attr("class", (d) => `link link-${d.layer.replace("_", "-")}`)
+    .attr("stroke-width", (d) => baseStrokeWidth(d))
+    .attr("stroke-opacity", (d) => baseStrokeOpacity(d))
+    .attr("marker-end", (d) => (d.layer === "give_get" ? "url(#arrow-give-get)" : null));
+
+  // Edge labels — short hint per layer; full "why" still surfaces in the hover tooltip.
+  linkSel.append("text")
+    .attr("class", "link-label")
+    .text((d) => edgeLabelFor(d));
+
+  const node = nodeGroup.selectAll("g.node")
+    .data(nodes, (d) => d.id)
+    .enter()
+    .append("g")
+    .attr("class", "node")
+    .on("click", (event, d) => selectNode(d.id))
+    .on("mousemove", (event, d) => showNodeTooltip(event, d))
+    .on("mouseleave", () => tooltip.hide())
+    .call(d3.drag()
+      // Drag is opt-in: hold Shift to grab a node. Plain clicks/taps still
+      // select the researcher without nudging the layout, which is what most
+      // people expect from a graph viewer.
+      .filter((event) => event.shiftKey)
+      .on("start", (event, d) => {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      })
+      .on("drag", (event, d) => {
+        // Drag events arrive in screen-space. Invert the zoom AND the scales
+        // to get back to simulation-space coords (where the forces live).
+        d.fx = xScale.invert(zoomTransform.invertX(event.x));
+        d.fy = yScale.invert(zoomTransform.invertY(event.y));
+      })
+      .on("end", (event, d) => {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      }));
+
+  node.append("circle")
+    .attr("class", "halo")
+    .attr("r", R + 6);
+  node.append("image")
+    .attr("class", "face-img")
+    .attr("href", (d) => d.photo)
+    .attr("x", -R)
+    .attr("y", -R)
+    .attr("width", R * 2)
+    .attr("height", R * 2)
+    .attr("preserveAspectRatio", "xMidYMid slice");
+  node.append("circle")
+    .attr("class", "frame")
+    .attr("r", R)
+    .attr("fill", "none");
+  node.append("text")
+    .attr("class", "label")
+    .attr("y", R + 14)
+    .text((d) => d.name);
+
+  const width = svg.node().clientWidth;
+  const height = svg.node().clientHeight;
+  svg.attr("viewBox", [0, 0, width, height]);
+
+  // Simulation runs on ACTIVE edges only — toggling a layer changes the layout,
+  // not just visibility. animateLayerChange() updates the link force.
+  const activeLinks = linkData.filter((d) => state.active.has(d.layer));
+  simulation = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(activeLinks).id((d) => d.id).distance((d) => 110 + (1 - d.score) * 90).strength(0.35))
+    .force("charge", d3.forceManyBody().strength(-700))
+    .force("collide", d3.forceCollide().radius(R + 22))
+    // .force("center", d3.forceCenter(width / 2, height / 2)) // when nodes get loose center doesn't work well
+    .force("x", d3.forceX(width / 2).strength(0.05))
+    .force("y", d3.forceY(height / 2).strength(0.05))
+    .on("tick", reflow);
+
+  function reflow() {
+    updateScales();
+    linkGroup.selectAll("line").each(function (d) {
+      d3.select(this)
+        .attr("x1", projectX(d.source))
+        .attr("y1", projectY(d.source))
+        .attr("x2", projectX(d.target))
+        .attr("y2", projectY(d.target));
+    });
+    linkGroup.selectAll("text.link-label")
+      .attr("x", (d) => (projectX(d.source) + projectX(d.target)) / 2)
+      .attr("y", (d) => (projectY(d.source) + projectY(d.target)) / 2 - 3);
+    node.attr("transform", (d) => `translate(${projectX(d)},${projectY(d)})`);
+  }
+
+  svg.call(d3.zoom()
+    .scaleExtent([0.4, 4])
+    .on("zoom", (event) => {
+      // Semantic zoom: stash the transform and re-run the reflow. We do NOT
+      // apply a transform to the parent groups — that would scale photo and
+      // text size with the zoom (geometric zoom). Reflowing per-element keeps
+      // every visual asset at its native pixel size.
+      zoomTransform = event.transform;
+      reflow();
+    }));
+
+  renderEdges();
+  updateLayerCounts();
+}
+
+function renderEdges() {
+  linkGroup.selectAll("g.link-grp")
+    .style("display", (d) => (state.active.has(d.layer) ? null : "none"));
+}
+
+function edgeLabelFor(d) {
+  // Keep labels short — full text is in the hover tooltip and side panel.
+  if (d.layer === "give_get") {
+    if (!d.why) return d.score.toFixed(2);
+    // "give-bullet" → "get-bullet"; show first ~24 chars of each side
+    const m = d.why.match(/^"([^"]+)"\s*[→-]+\s*"([^"]+)"$/);
+    if (m) {
+      const left = m[1].length > 22 ? m[1].slice(0, 21) + "…" : m[1];
+      const right = m[2].length > 22 ? m[2].slice(0, 21) + "…" : m[2];
+      return `${left} → ${right}`;
+    }
+    return d.why.slice(0, 50);
+  }
+  if (d.layer === "keyword") {
+    if (!d.why) return d.score.toFixed(2);
+    return d.why.slice(0, 36);
+  }
+  // topic — just the score
+  return d.score.toFixed(2);
+}
+
+function animateLayerChange() {
+  if (!simulation) return;
+
+  // Step 1 — fade edges in/out via class-toggled display + CSS transition on stroke-opacity.
+  linkGroup.selectAll("g.link-grp").each(function (d) {
+    const grp = d3.select(this);
+    const active = state.active.has(d.layer);
+    const line = grp.select("line.link");
+    if (active) {
+      grp.style("display", null);
+      // re-trigger transition from 0 to target opacity
+      line.attr("stroke-opacity", 0)
+        .transition().duration(450).ease(d3.easeCubicOut)
+        .attr("stroke-opacity", baseStrokeOpacity(d));
+    } else {
+      line.transition().duration(300).ease(d3.easeCubicIn)
+        .attr("stroke-opacity", 0)
+        .on("end", function () { grp.style("display", "none"); });
+    }
+  });
+
+  // Step 2 — swap the active link set into the simulation's force.
+  const activeLinks = state.allLinkData.filter((d) => state.active.has(d.layer));
+  simulation.force("link").links(activeLinks);
+
+  // Step 3 — lock every node at its current position, then release them one at
+  // a time so the layout cascades instead of jumping. Order is by current x
+  // coord so the wave moves left → right (visually pleasing).
+  const nodes = state.nodes;
+  nodes.forEach((n) => { n.fx = n.x; n.fy = n.y; });
+  const order = [...nodes].sort((a, b) => a.x - b.x);
+  simulation.alpha(0.55).restart();
+
+  // Wait for edges to start fading before we begin the cascade.
+  const startDelay = 220;
+  const stagger = Math.max(35, Math.min(70, 1400 / nodes.length));
+  order.forEach((n, i) => {
+    setTimeout(() => {
+      n.fx = null;
+      n.fy = null;
+      simulation.alpha(Math.max(simulation.alpha(), 0.3)).restart();
+    }, startDelay + i * stagger);
+  });
+}
+
+function neighborIdsOf(id) {
+  // 1-hop neighbors across currently-active layers, plus the node itself.
+  const set = new Set([id]);
+  for (const layer of LAYERS) {
+    if (!state.active.has(layer)) continue;
+    const edges = state.edgesByNode[layer].get(id) || [];
+    for (const e of edges) set.add(e.otherId);
+  }
+  return set;
+}
+
+function applyFilters() {
+  const term = state.searchTerm;
+  const locs = state.selectedLocations;
+  const baseMatches = (n) => {
+    if (locs.size > 0 && !locs.has(n.location)) return false;
+    if (!term) return true;
+    const haystack = [
+      n.name,
+      n.primary_area,
+      n.secondary_area,
+      ...(n.keywords || []),
+      ...(n.auto_keywords || []),
+      ...(n.give || []),
+      ...(n.get || []),
+    ].join(" ").toLowerCase();
+    return haystack.includes(term);
+  };
+
+  // Focus mode: when enabled, only the selected researcher and their direct
+  // neighbors are considered "matching" — the rest fade out.
+  const focusSet = state.focusOnSelection && state.selectedId ? neighborIdsOf(state.selectedId) : null;
+  const matches = (n) => baseMatches(n) && (!focusSet || focusSet.has(n.id));
+
+  nodeGroup.selectAll("g.node").classed("dimmed", (d) => !matches(d));
+  linkGroup.selectAll("g.link-grp").classed("dimmed", (d) => {
+    if (!state.active.has(d.layer)) return true;
+    if (focusSet && d.source.id !== state.selectedId && d.target.id !== state.selectedId) return true;
+    return !matches(d.source) || !matches(d.target);
+  });
+  linkGroup.selectAll("line.link").classed("dimmed", function () {
+    return d3.select(this.parentNode).classed("dimmed");
+  });
+}
+
+function updateFocusModeClass() {
+  // The `.focus-mode` class on body deepens the dim of unrelated nodes/edges.
+  // Only meaningful when focus is requested AND a researcher is selected.
+  document.body.classList.toggle(
+    "focus-mode",
+    state.focusOnSelection && !!state.selectedId
+  );
+}
+
+function selectNode(id) {
+  state.selectedId = id;
+  nodeGroup.selectAll("g.node").classed("selected", (d) => d.id === id);
+  linkGroup.selectAll("g.link-grp").classed("label-on", (d) => {
+    return d.source.id === id || d.target.id === id;
+  });
+  updateFocusModeClass();
+  applyFilters();           // re-evaluate focus mode if it's on
+  renderDetail(id);
+}
+
+function clearSelection() {
+  state.selectedId = null;
+  // Don't reset focusOnSelection — it's a user preference, the next selection
+  // should respect whatever they had on. Default state is true (focus on).
+  nodeGroup.selectAll("g.node").classed("selected", false);
+  linkGroup.selectAll("g.link-grp").classed("label-on", false);
+  updateFocusModeClass();
+  applyFilters();
+  // Restore the empty placeholder in the detail panel.
+  const root = document.getElementById("detail");
+  while (root.firstChild) root.removeChild(root.firstChild);
+  const empty = document.createElement("div");
+  empty.className = "empty";
+  empty.textContent = "Click any researcher to see their give/get bullets and top connections.";
+  root.appendChild(empty);
+}
+
+function setFocusOnSelection(on) {
+  state.focusOnSelection = !!on;
+  updateFocusModeClass();
+  applyFilters();
+}
+
+function showEdgeTooltip(event, d) {
+  const a = d.source, b = d.target;
+  const arrow = d.layer === "give_get" ? " → " : " ↔ ";
+  const lines = [
+    `${a.name}${arrow}${b.name}`,
+    `${LAYER_LABELS[d.layer]} • score ${d.score.toFixed(2)}`,
+  ];
+  if (d.why) lines.push(d.why);
+  tooltip.showLines(event, lines, `tooltip-${d.layer.replace("_", "-")}`);
+}
+
+function showNodeTooltip(event, d) {
+  const lines = [d.name];
+  if (d.primary_area) lines.push(d.primary_area);
+  if (d.location) lines.push(d.location);
+  tooltip.showLines(event, lines);
+}
+
+function makeTooltip() {
+  const el = document.createElement("div");
+  el.id = "tooltip";
+  el.style.cssText = [
+    "position: fixed",
+    "pointer-events: none",
+    "background: var(--panel)",
+    "color: var(--text)",
+    "border: 1px solid var(--border)",
+    "border-radius: 6px",
+    "padding: 8px 10px",
+    "font-size: 12px",
+    "max-width: 360px",
+    "box-shadow: 0 6px 20px rgba(0,0,0,0.45)",
+    "z-index: 1000",
+    "opacity: 0",
+    "transition: opacity 0.1s ease",
+  ].join("; ");
+  document.body.appendChild(el);
+
+  return {
+    showLines(event, lines, extraClass) {
+      // Clear contents safely
+      while (el.firstChild) el.removeChild(el.firstChild);
+      el.className = "";
+      if (extraClass) el.classList.add(extraClass);
+      lines.forEach((line, i) => {
+        const div = document.createElement("div");
+        div.textContent = line;
+        if (i === 0) div.style.fontWeight = "600";
+        if (i === 1) { div.style.fontSize = "11px"; div.style.color = "var(--muted)"; div.style.marginTop = "1px"; }
+        if (i >= 2) { div.style.marginTop = "4px"; div.style.fontStyle = "italic"; div.style.color = "var(--muted)"; }
+        el.appendChild(div);
+      });
+      el.style.left = `${event.clientX + 14}px`;
+      el.style.top = `${event.clientY + 12}px`;
+      el.style.opacity = "1";
+    },
+    hide() { el.style.opacity = "0"; },
+  };
+}
+
+function renderDetail(id) {
+  const node = state.nodeIndex.get(id);
+  if (!node) return;
+  const root = document.getElementById("detail");
+  while (root.firstChild) root.removeChild(root.firstChild);
+
+  // Selection action bar — clear button + focus toggle.
+  const actions = el("div", "selection-actions");
+  const tag = el("span", "selection-tag", "Selected");
+  actions.appendChild(tag);
+
+  const focusLabel = document.createElement("label");
+  focusLabel.className = "focus-toggle";
+  const focusInput = document.createElement("input");
+  focusInput.type = "checkbox";
+  focusInput.checked = state.focusOnSelection;
+  focusInput.addEventListener("change", (e) => setFocusOnSelection(e.target.checked));
+  focusLabel.appendChild(focusInput);
+  focusLabel.appendChild(document.createTextNode(" Focus"));
+  focusLabel.title = "Show only this researcher and their direct connections";
+  actions.appendChild(focusLabel);
+
+  const clearBtn = document.createElement("button");
+  clearBtn.type = "button";
+  clearBtn.className = "selection-clear";
+  clearBtn.textContent = "Clear ✕";
+  clearBtn.title = "Clear selection";
+  clearBtn.addEventListener("click", clearSelection);
+  actions.appendChild(clearBtn);
+
+  root.appendChild(actions);
+
+  // Header
+  const head = el("div", "head");
+  if (node.photo) {
+    const img = document.createElement("img");
+    img.src = node.photo;
+    img.alt = node.name;
+    head.appendChild(img);
+  }
+  const headText = el("div");
+  headText.appendChild(el("h3", null, node.name));
+  if (node.location) headText.appendChild(el("div", "sub", node.location));
+  const badges = el("div", "badges");
+  if (node.primary_area) badges.appendChild(el("span", "badge area", node.primary_area));
+  if (node.secondary_area) badges.appendChild(el("span", "badge", node.secondary_area));
+  if (node.provenance) badges.appendChild(el("span", "badge", node.provenance));
+  headText.appendChild(badges);
+  head.appendChild(headText);
+  root.appendChild(head);
+
+  // Email + links
+  if (node.email) {
+    const emailRow = el("div", "links");
+    emailRow.style.marginTop = "6px";
+    const a = document.createElement("a");
+    a.href = `mailto:${node.email}`;
+    a.textContent = node.email;
+    emailRow.appendChild(a);
+    root.appendChild(emailRow);
+  }
+  if (node.links && node.links.length) {
+    const linksRow = el("div", "links");
+    linksRow.style.marginTop = "4px";
+    node.links.forEach((href, i) => {
+      const a = document.createElement("a");
+      a.href = href;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = href;
+      if (i > 0) linksRow.appendChild(document.createElement("br"));
+      linksRow.appendChild(a);
+    });
+    root.appendChild(linksRow);
+  }
+
+  // Give / Get bullets
+  appendListSection(root, "What they can give", node.give);
+  appendListSection(root, "What they want to get", node.get);
+
+  // Keywords
+  if (node.keywords && node.keywords.length) {
+    root.appendChild(el("h4", null, "Keywords (self-reported)"));
+    const kw = el("div", "keywords");
+    node.keywords.forEach((k) => kw.appendChild(el("span", "kw", k)));
+    root.appendChild(kw);
+  }
+  if (node.auto_keywords && node.auto_keywords.length) {
+    root.appendChild(el("h4", null, "Topic phrases (auto-extracted)"));
+    const kw = el("div", "keywords");
+    node.auto_keywords.forEach((k) => kw.appendChild(el("span", "kw", k)));
+    root.appendChild(kw);
+  }
+
+  // Connection blocks
+  appendConnections(root, "give_get", id, node);
+  appendConnections(root, "topic", id, node);
+  appendConnections(root, "keyword", id, node);
+}
+
+function appendListSection(root, title, items) {
+  root.appendChild(el("h4", null, title));
+  const ul = document.createElement("ul");
+  if (!items || items.length === 0) {
+    const li = document.createElement("li");
+    li.appendChild(el("em", null, "(none)"));
+    ul.appendChild(li);
+  } else {
+    items.forEach((b) => ul.appendChild(el("li", null, b)));
+  }
+  root.appendChild(ul);
+}
+
+function appendConnections(root, layer, id, node) {
+  const cls = `conn-block layer-${layer.replace("_", "-")}`;
+  const block = el("div", cls);
+  block.appendChild(el("h4", null, `${LAYER_LABELS[layer]} connections`));
+
+  const list = (state.edgesByNode[layer].get(id) || [])
+    .slice()
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5);
+
+  if (list.length === 0) {
+    const empty = el("div", null, "No connections in this layer.");
+    empty.style.color = "var(--muted)";
+    empty.style.fontSize = "12px";
+    block.appendChild(empty);
+  } else {
+    list.forEach((e) => {
+      const other = state.nodeIndex.get(e.otherId);
+      if (!other) return;
+      const conn = el("div", "conn");
+      conn.dataset.id = other.id;
+      const direction = layer === "give_get"
+        ? (e.incoming ? `${other.name} → ${node.name}` : `${node.name} → ${other.name}`)
+        : other.name;
+      conn.appendChild(el("span", "conn-name", direction));
+      conn.appendChild(el("span", "conn-score", e.score.toFixed(2)));
+      if (e.why) conn.appendChild(el("div", "conn-why", e.why));
+      conn.addEventListener("click", () => selectNode(other.id));
+      block.appendChild(conn);
+    });
+  }
+  root.appendChild(block);
+}
+
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text != null) node.textContent = text;
+  return node;
+}
+
+function handleCanvasResize() {
+  if (!simulation) return;
+  const width = svg.node().clientWidth;
+  const height = svg.node().clientHeight;
+  if (!width || !height) return;
+  svg.attr("viewBox", [0, 0, width, height]);
+  simulation.force("center", d3.forceCenter(width / 2, height / 2));
+  xScale.range([VIEWPORT_MARGIN, width - VIEWPORT_MARGIN]);
+  yScale.range([VIEWPORT_MARGIN, height - VIEWPORT_BOTTOM_MARGIN]);
+  simulation.alpha(0.25).restart();
+}
+window.addEventListener("resize", handleCanvasResize);
+// ResizeObserver picks up canvas size changes when side panels collapse
+// (grid columns change but window size doesn't).
+if (typeof ResizeObserver !== "undefined") {
+  const ro = new ResizeObserver(() => handleCanvasResize());
+  // Wire up after init() runs and the SVG has dimensions.
+  setTimeout(() => ro.observe(svg.node()), 0);
+}
+
+init().catch((err) => {
+  console.error(err);
+  document.getElementById("meta-counts").textContent = "Failed to load graph.json";
+});
