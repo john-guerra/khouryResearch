@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khoury Researcher Connections</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <button type="button" id="toggle-controls" class="panel-toggle" aria-label="Toggle filters panel" title="Filters">
+      <span class="bars" aria-hidden="true"></span>
+    </button>
+    <div class="title">
+      <h1>
+        Khoury Researcher Connections
+        <span class="event-tag">Khoury Research Day · May 4, 2026</span>
+      </h1>
+      <p class="subtitle">Find collaborators across give/get bullets, topic similarity, and shared keywords.</p>
+    </div>
+    <div class="meta-counts" id="meta-counts"></div>
+    <a class="about-link" href="about.html">About</a>
+    <button type="button" id="toggle-detail" class="panel-toggle" aria-label="Toggle details panel" title="Details">
+      <span class="dots" aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <aside class="controls">
+    <section>
+      <h2>Connection layers</h2>
+      <label class="layer-toggle layer-give-get">
+        <input type="checkbox" data-layer="give_get" checked />
+        <span class="swatch"></span>
+        <span>Give → Get matches</span>
+        <span class="count" id="count-give_get"></span>
+      </label>
+      <label class="layer-toggle layer-topic">
+        <input type="checkbox" data-layer="topic" />
+        <span class="swatch"></span>
+        <span>Topic similarity</span>
+        <span class="count" id="count-topic"></span>
+      </label>
+      <label class="layer-toggle layer-keyword">
+        <input type="checkbox" data-layer="keyword" />
+        <span class="swatch"></span>
+        <span>Shared keywords</span>
+        <span class="count" id="count-keyword"></span>
+      </label>
+      <label class="layer-toggle">
+        <input type="checkbox" id="show-labels" />
+        <span class="swatch" style="visibility:hidden"></span>
+        <span>Show edge labels</span>
+      </label>
+    </section>
+
+    <section>
+      <h2>Filter</h2>
+      <input type="search" id="search" placeholder="Search name, bullets, keywords…" />
+      <div id="location-chips" class="chips"></div>
+      <button type="button" id="reset-filters" class="reset">Clear filters</button>
+    </section>
+
+    <section>
+      <h2>Legend</h2>
+      <div class="legend-row">
+        <span class="legend-line layer-give-get"></span>
+        <span>Give → Get (directed: source helps target)</span>
+      </div>
+      <div class="legend-row">
+        <span class="legend-line layer-topic"></span>
+        <span>Topic similarity (undirected)</span>
+      </div>
+      <div class="legend-row">
+        <span class="legend-line layer-keyword"></span>
+        <span>Shared keywords (undirected)</span>
+      </div>
+      <p class="hint">Edge opacity is proportional to score. Top 3 matches per researcher per layer.</p>
+      <p class="hint">Tip: <kbd>Shift</kbd>+drag a researcher to pin them in place.</p>
+    </section>
+  </aside>
+
+  <main class="canvas">
+    <svg id="graph"></svg>
+  </main>
+
+  <aside class="detail" id="detail">
+    <div class="empty">Click any researcher to see their give/get bullets and top connections.</div>
+  </aside>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,2111 @@
+{
+  "nodes": [
+    {
+      "id": "melanie-tory",
+      "name": "Melanie Tory",
+      "location": "Oakland",
+      "give": [
+        "VIS design, Human-AI interaction expertise",
+        "Qual & Quant human subjects studies",
+        "Research resources and support for NTT faculty"
+      ],
+      "get": [
+        "New collaborations & proposals",
+        "Cross-campus connections",
+        "Data monitoring applications",
+        "(especially in health)"
+      ],
+      "primary_area": "Visualization",
+      "secondary_area": "HCC",
+      "keywords": [
+        "visual analytics",
+        "HCAI"
+      ],
+      "email": "m.tory@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/melanie-tory.jpg",
+      "slide_index": 2,
+      "auto_keywords": [
+        "applications especially health",
+        "data monitoring",
+        "hcai",
+        "human ai interaction",
+        "human subjects studies",
+        "new collaborations proposals",
+        "support ntt faculty",
+        "visual analytics"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "brianna-dym",
+      "name": "Brianna Dym",
+      "location": "Portland",
+      "give": [
+        "Expertise in qualitative research - interviews, discourse analysis",
+        "Nontraditional CS education perspective, as a learner and educator",
+        "Privacy & Safety in HCI",
+        "Rurality in CS!"
+      ],
+      "get": [
+        "Collaborators I can recommend student project seekers to!",
+        "Folks looking for an expert perspective from one of my areas",
+        "Connections for privacy research!"
+      ],
+      "primary_area": "Broadening Participation in Computing",
+      "secondary_area": "Human-Computer Interaction",
+      "keywords": [
+        "privacy",
+        "safety",
+        "ethics",
+        "empowerment"
+      ],
+      "email": "b.dym@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/brianna-dym.jpg",
+      "slide_index": 3,
+      "auto_keywords": [
+        "empowerment",
+        "ethics",
+        "expertise qualitative research",
+        "interviews discourse analysis",
+        "nontraditional cs education",
+        "privacy",
+        "rurality cs collaborators",
+        "safety",
+        "student project seekers"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "michael-correll",
+      "name": "Michael Correll",
+      "location": "Portland",
+      "give": [
+        "Datavis design skills",
+        "Critical lens on data practices + info design",
+        "Broad domain experiences"
+      ],
+      "get": [
+        "Collaborators, esp. In digital humanities, bioinformatics",
+        "Cool data",
+        "Grant $$$"
+      ],
+      "primary_area": "Visualization",
+      "secondary_area": "HCC",
+      "keywords": [
+        "information visualization",
+        "statistical graphics",
+        "data ethics"
+      ],
+      "email": "m.correll@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/michael-correll.jpg",
+      "slide_index": 4,
+      "auto_keywords": [
+        "cool data grant",
+        "data ethics",
+        "data practices info",
+        "datavis design skills",
+        "domain experiences collaborators",
+        "humanities bioinformatics cool",
+        "info design broad",
+        "information visualization",
+        "statistical graphics"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "aanchan-mohan",
+      "name": "Aanchan Mohan",
+      "location": "Vancouver",
+      "give": [
+        "Audio and speech processing expertise",
+        "Cloud deployment and working with the research cluster",
+        "Look into implementation and user issues with machine learning models e.g. model caching"
+      ],
+      "get": [
+        "Collaboration in research with atypical speakers",
+        "Learn more about real-time machine learning use cases",
+        "Access to funding resources in Canada"
+      ],
+      "primary_area": "Speech, audio and language",
+      "secondary_area": "Natural language processing",
+      "keywords": [
+        "speech recognition",
+        "voice conversion",
+        "NLP",
+        "large language models",
+        "machine learning",
+        "Audio LLMs"
+      ],
+      "email": "aa.mohan@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/aanchan-mohan.jpg",
+      "slide_index": 5,
+      "auto_keywords": [
+        "audio llms",
+        "cloud deployment",
+        "funding resources canada",
+        "large language models",
+        "learn real time",
+        "machine learning",
+        "machine learning use",
+        "nlp",
+        "speech processing expertise",
+        "speech recognition",
+        "voice conversion",
+        "working research cluster"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "hazra-imran",
+      "name": "Hazra Imran",
+      "location": "Vancouver",
+      "give": [
+        "Design of adaptive learning systems (policy-driven scaffolding, RL-based personalization)",
+        "Expertise in programming and SQL education research (classroom deployments, real learners)",
+        "Multimodal learning analytics (keystroke logs, behavioral traces, affect signals)",
+        "End-to-end system building (LLMs, backend infra, data pipelines, dashboards)",
+        "Study design + empirical evaluation (HCI / AIED / CS education contexts)"
+      ],
+      "get": [
+        "Collaborations on real-time adaptive AI (especially beyond education domains)",
+        "Access to diverse learner populations or applied deployment contexts",
+        "Partnerships for multimodal sensing (affect, physiological signals, interaction data)",
+        "Co-advisorship opportunities for MS/PhD students",
+        "Funding and cross-institution collaborations (Canada / US)",
+        "Joint publications in CHI / ICER / AIED / L@S"
+      ],
+      "primary_area": "Human-centered adaptive AI systems",
+      "secondary_area": "Computing education, HCI",
+      "keywords": [
+        "adaptive learning",
+        "emotion-aware systems",
+        "SQL education",
+        "debugging",
+        "gamification",
+        "interaction traces",
+        "reinforcement learning"
+      ],
+      "email": "h.imran@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/hazra-imran.jpg",
+      "slide_index": 6,
+      "auto_keywords": [
+        "adaptive learning",
+        "aied cs education",
+        "classroom deployments",
+        "debugging",
+        "emotion-aware systems",
+        "gamification",
+        "interaction data advisorship",
+        "interaction traces",
+        "learning analytics",
+        "real learners multimodal",
+        "reinforcement learning",
+        "sensing affect physiological",
+        "sql education"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "felix-muzny",
+      "name": "Felix Muzny",
+      "location": "Boston",
+      "give": [
+        "Access to TAs/TA committee",
+        "Connections to the Center for Inclusive Computing and various kinds of data",
+        "Connections to digital humanists in English/Journalism/etc.",
+        "Experience with education research and humanistic inquiry"
+      ],
+      "get": [
+        "Collaborator(s) (likely HCI?) to study how students/people learn about (*not use*) LLMs/AI models",
+        "Anyone else working at the intersection of CSEd & NLP?",
+        "Friends/community :)"
+      ],
+      "primary_area": "Broadening Participation",
+      "secondary_area": "CSEd",
+      "keywords": [
+        "Digital Humanities & NLP"
+      ],
+      "email": "",
+      "links": [],
+      "photo": "data/photos/felix-muzny.jpg",
+      "slide_index": 7,
+      "auto_keywords": [
+        "connections digital humanists",
+        "digital humanities & nlp",
+        "experience education",
+        "inclusive computing various",
+        "inquiry collaborator likely",
+        "study students people",
+        "ta committee"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "albert-lionelle",
+      "name": "Albert Lionelle",
+      "location": "Online",
+      "give": [
+        "Expertise in CS Pedagogies",
+        "College curriculum design, complexity analysis",
+        "Intro sequence design, implementation",
+        "Psychology and cognitive models related to computational thinking and learning",
+        "“Learning to learn” computer science",
+        "Grading practices and how they affect various student groups and learning mindsets",
+        "Experience with measure impact on both UG and GR CS education",
+        "Easy access to build curricular and university comparison reports",
+        "Bridge Program / MS Pathways research areas"
+      ],
+      "get": [
+        "Developing and documenting repeatable evidence driven and measurable inclusive pedagogies to share with other campuses and groups",
+        "Expanding feedback mechanisms within autograders and structured tools to support instructors",
+        "Expanding curricular complexity tools to simplify and automate the process of data collection and analysis"
+      ],
+      "primary_area": "CS Education",
+      "secondary_area": "Broadening Participation",
+      "keywords": [
+        "Curricular Design",
+        "Curricular and Learning Analytics"
+      ],
+      "email": "a.lionelle@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/albert-lionelle.jpg",
+      "slide_index": 8,
+      "auto_keywords": [
+        "college curriculum design",
+        "computer science grading",
+        "cs pedagogies",
+        "curricular and learning analytics",
+        "curricular complexity tools",
+        "curricular design",
+        "implementation psychology cognitive",
+        "program ms pathways"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "huihui-wang",
+      "name": "Huihui Wang",
+      "location": "Arlington",
+      "give": [
+        "Suggestions about NSF proposal preparation of some programs of EDU and TIP using my knowledge and network of the NSF as a former program director",
+        "Promote or advocate our practices/inititatives at ASEE, and IEEE Education Society as a board member and ACM EIGTRUST as an officer"
+      ],
+      "get": [
+        "Learn others’ initiatives and best practices",
+        "Collaboration cross the fields",
+        "Broaden my networking"
+      ],
+      "primary_area": "Computing and Engineering Education",
+      "secondary_area": "CyberAI Innovation and Partnerships",
+      "keywords": [
+        "AIoT",
+        "AI for cybersecurity",
+        "computing education",
+        "engineering education"
+      ],
+      "email": "huih.wang@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/huihui-wang.jpg",
+      "slide_index": 9,
+      "auto_keywords": [
+        "ai for cybersecurity",
+        "aiot",
+        "asee ieee education",
+        "computing education",
+        "engineering education",
+        "member acm eigtrust",
+        "nsf proposal preparation",
+        "officer learn initiatives",
+        "practices collaboration",
+        "programs edu tip"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "john-a-guerra-gomez",
+      "name": "John A. Guerra Gomez",
+      "location": "Oakland",
+      "give": [
+        "Information visualization problem abstraction (i.e. understand users, data, tasks) and how to solve them",
+        "Actual implementations of rich and interactive information visualization prototypes to solve them",
+        "AI Coding"
+      ],
+      "get": [
+        "Interdisciplinary collaborations, that includes: ▸ complex data, ▸rich analysis tasks, and ▸users willing to work to extract insights",
+        "Collaborations for grant proposals"
+      ],
+      "primary_area": "Information Visualization",
+      "secondary_area": "HCC",
+      "keywords": [
+        "InfoVis",
+        "A11y",
+        "AI Coding"
+      ],
+      "email": "jguerra@northeastern.edu",
+      "links": [
+        "https://johnguerra.co"
+      ],
+      "photo": "data/photos/john-a-guerra-gomez.jpg",
+      "slide_index": 10,
+      "auto_keywords": [
+        "a11y",
+        "abstraction understand users",
+        "ai coding",
+        "ai coding interdisciplinary",
+        "complex data rich",
+        "information visualization prototypes",
+        "infovis",
+        "insights collaborations grant",
+        "tasks users willing"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "miguel-fuentes-cabrera",
+      "name": "Miguel Fuentes-Cabrera",
+      "location": "Oakland",
+      "give": [
+        "Connections to National Labs. (ORNL, PNNL, LBNL)",
+        "Access to real-world research projects",
+        "Broadening participation in CS (research collaborations designed to open doors in STEM)"
+      ],
+      "get": [
+        "Collaborations with faculty across Northeastern campuses",
+        "Opportunities to integrate projects into practicum and capstone courses",
+        "Collaborations in AI for social impact"
+      ],
+      "primary_area": "ML + Materials Science",
+      "secondary_area": "ML + Microbiology",
+      "keywords": [
+        "ML",
+        "materials discovery",
+        "proteins",
+        "microbes"
+      ],
+      "email": "m.fuentes-cabreral@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/miguel-fuentes-cabrera.jpg",
+      "slide_index": 11,
+      "auto_keywords": [
+        "ai social impact",
+        "faculty northeastern campuses",
+        "materials discovery",
+        "microbes",
+        "ml",
+        "national labs ornl",
+        "participation cs research",
+        "proteins",
+        "research projects broadening",
+        "stem collaborations"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "joydeep-mitra",
+      "name": "Joydeep Mitra",
+      "location": "Boston",
+      "give": [
+        "Experience with several aspects of software engineering research (e.g., secure software design, testing, ethical design frameworks )",
+        "Access to CS classrooms for conducting empirical studies related to CS education research",
+        "Experience with working in interdisciplinary fields such as digital humanities"
+      ],
+      "get": [
+        "Explore/Develop research ideas in the software engineering/computer science education space",
+        "Develop pedagogical tools and methods related (but not restricted) to study the use of AI-assisted programming by students",
+        "Opportunities for collaborative grant writing"
+      ],
+      "primary_area": "Software Engineering",
+      "secondary_area": "CS Education",
+      "keywords": [
+        "Digital Humanities"
+      ],
+      "email": "j.mitra@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/joydeep-mitra.jpg",
+      "slide_index": 12,
+      "auto_keywords": [
+        "assisted programming students",
+        "collaborative grant writing",
+        "cs education research",
+        "digital humanities",
+        "ideas software engineering",
+        "research experience working",
+        "testing ethical"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "matt-higger",
+      "name": "Matt Higger",
+      "location": "Boston",
+      "give": [
+        "Applications for new tool: find the area of the brain which changes due to age / diagnosis etc.  It needn’t be medical (e.g. how is this riverbed changing year-to-year from satellite images?)",
+        "Or HCI feedback on our unwieldy vizualization (feel free to just email me and tell me what I’m doing wrong, can you tell I haven’t taken an HCI course?)",
+        "Seeking collaborators / applications for new AAC tool: use eye gaze / face or hand poses to input letters to computer (student research scheduled for Fall 2026) old youtube demo.  Low time commitment / relevant expertise collaborators very welcome here!"
+      ],
+      "get": [
+        "Vibe Coding “Expertise”",
+        "Or, at least, interest in AI driven development",
+        "Pedagogical Tool Development",
+        "Storing math problems/solutions across semesters",
+        "Computing Final Grades",
+        "Enthusiastically mediocre jokes",
+        "Support in any way you think we might intersect"
+      ],
+      "primary_area": "MRI Analysis (ML & Signal Processing)",
+      "secondary_area": "Augmentative and Alternative Communication (Info Theory & HCI)",
+      "keywords": [],
+      "email": "mhigger@ccs.neu.edu",
+      "links": [],
+      "photo": "data/photos/matt-higger.jpg",
+      "slide_index": 13,
+      "auto_keywords": [
+        "ai driven development",
+        "applications new tool",
+        "brain changes age",
+        "course seeking collaborators",
+        "hci feedback",
+        "use eye gaze"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "tala-talaei-khoei",
+      "name": "Tala Talaei Khoei",
+      "location": "Portland",
+      "give": [
+        "Expertise in cybersecurity, AI, ML, and NLP, including problem abstraction and solution design",
+        "Development of intelligent systems and interactive, data-driven prototypes",
+        "AI-driven coding and modeling for tasks such as threat detection, anomaly analysis, and text analytics"
+      ],
+      "get": [
+        "Collaborations with faculty across Northeastern campuses on interdisciplinary research and projects",
+        "Opportunities to integrate real-world projects into practicum and capstone courses",
+        "Partnerships focused on AI for social impact, particularly in areas related to security, ethics, and societal well-being"
+      ],
+      "primary_area": "AI, ML, NLP, and Computer Vision",
+      "secondary_area": "Cyber-Security",
+      "keywords": [],
+      "email": "t.talaeikhoei@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/tala-talaei-khoei.jpg",
+      "slide_index": 14,
+      "auto_keywords": [
+        "campuses interdisciplinary research",
+        "expertise cybersecurity ai",
+        "partnerships focused ai",
+        "real world projects",
+        "social impact",
+        "text analytics collaborations"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "mohit-singhal",
+      "name": "Mohit Singhal",
+      "location": "Boston",
+      "give": [
+        "Expertise in content moderation of social media and evaluating changes of moderation on society",
+        "Expertise in data analysis and creation of tools to obtain social media data",
+        "Expertise in understanding security and privacy concerns of users on social media platforms and disentangling causal insights."
+      ],
+      "get": [
+        "Collaborations with other faculty members in the areas and writing research grants.",
+        "Collaborations on interdisciplinary work tying content moderation, law and ethics within NEU and with other Universities and Centers such as the Harvard Klein Center",
+        "Co-advisorship opportunities (MS/PhD)!",
+        "Collaborations in HCI related to social media."
+      ],
+      "primary_area": "HCI, Security & Privacy",
+      "secondary_area": "Computational Social Science",
+      "keywords": [],
+      "email": "m.singhal@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/mohit-singhal.jpg",
+      "slide_index": 15,
+      "auto_keywords": [
+        "hci related social",
+        "insights collaborations faculty",
+        "klein center",
+        "law ethics neu",
+        "media data expertise",
+        "moderation social media"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "tehmina-amjad",
+      "name": "Tehmina Amjad",
+      "location": "Silicon Valley",
+      "give": [
+        "AI/ML, NLP, and Information Retrieval expertise",
+        "Interdisciplinary AI applications (geoscience, scientometrics)",
+        "Mentorship through SPARK, capstones",
+        "Applied ML guidance: datasets, evaluation, real-world problems"
+      ],
+      "get": [
+        "Interdisciplinary collaborations (AI + science)",
+        "Joint proposals (NSF, cross-campus initiatives)",
+        "New domains for explainable & trustworthy AI",
+        "Student research opportunities and datasets"
+      ],
+      "primary_area": "AI/ML for Information Retrieval",
+      "secondary_area": "AI for Geoscience",
+      "keywords": [],
+      "email": "t.amjad@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/tehmina-amjad.jpg",
+      "slide_index": 16,
+      "auto_keywords": [
+        "applications geoscience scientometrics",
+        "expertise interdisciplinary ai",
+        "joint proposals nsf",
+        "ml nlp information",
+        "scientometrics mentorship spark",
+        "student research opportunities"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "maryam-tanha",
+      "name": "Maryam Tanha",
+      "location": "Vancouver",
+      "give": [
+        "Expertise in static and dynamic analysis of mobile malware, especially Android malware",
+        "Using XAI techniques to explain the results of ML-based malware detectors and design robust and trustworthy detectors",
+        "Modern self-supervised learning for applications in  cybersecurity"
+      ],
+      "get": [
+        "Cross-campus collaboration in research (e.g., cybersecurity, healthcare, critical infrastructure protection)",
+        "Collaboration in writing proposals and applying for research grants.",
+        "Access to research funding resources/grants in Canada"
+      ],
+      "primary_area": "Android malware detection and analysis",
+      "secondary_area": "Explainable AI, Network security, LLM’s security, Critical infrastructure protection",
+      "keywords": [
+        "Malware detection",
+        "AI for cybersecurity",
+        "LLM’s security",
+        "XAI"
+      ],
+      "email": "m.tanha@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/maryam-tanha.jpg",
+      "slide_index": 17,
+      "auto_keywords": [
+        "ai for cybersecurity",
+        "analysis mobile",
+        "collaboration research",
+        "cybersecurity cross campus",
+        "grants canada",
+        "llm’s security",
+        "malware detection",
+        "malware detectors",
+        "using xai techniques",
+        "xai"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "mahsan-nourani",
+      "name": "Mahsan Nourani",
+      "location": "Portland",
+      "give": [
+        "Expertise in Human-AI collaboration (trust, cognitive biases, mental models, RAI design)",
+        "Mixed methods user studies",
+        "Full-cycle UI/UX design",
+        "(research → prototyping → evaluation)",
+        "Domain-specific AI design"
+      ],
+      "get": [
+        "Grant $$$ + co-PI gigs",
+        "(help your early-career colleague out! :D)",
+        "Collaborations on AI literacy interventions",
+        "Respoinsible AI in the wild, e.g., AI in Policy, Research on AI’s societal impacts",
+        "RAI in healthcare"
+      ],
+      "primary_area": "Human-centered AI (HCC)",
+      "secondary_area": "Visual Analytics (Vis)",
+      "keywords": [
+        "Responsible AI",
+        "UI/UX",
+        "AI Literacy"
+      ],
+      "email": "m.nourani@northeastern.edu",
+      "links": [
+        "https://mahsan.page"
+      ],
+      "photo": "data/photos/mahsan-nourani.jpg",
+      "slide_index": 18,
+      "auto_keywords": [
+        "ai design grant",
+        "ai literacy",
+        "ai societal impacts",
+        "career colleague",
+        "collaborations ai literacy",
+        "impacts rai healthcare",
+        "responsible ai",
+        "ui/ux",
+        "ux design research"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "deahan-yu",
+      "name": "Deahan Yu",
+      "location": "Boston",
+      "give": [
+        "NLP/ML in health",
+        "Information Extraction from text",
+        "Broad applications of data science"
+      ],
+      "get": [
+        "Tips/guidance/collaboration on grant writing (as a teaching faculty)",
+        "Project collaboration opportunities"
+      ],
+      "primary_area": "NLP/ML in Health",
+      "secondary_area": "Computational Social Science",
+      "keywords": [],
+      "email": "d.yu@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/deahan-yu.jpg",
+      "slide_index": 19,
+      "auto_keywords": [
+        "applications data science",
+        "collaboration grant writing",
+        "health information",
+        "information extraction text",
+        "nlp ml health",
+        "teaching faculty project"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "jessica-staddon",
+      "name": "Jessica Staddon",
+      "location": "Oakland",
+      "give": [
+        "Experience with research and safety operations in industry",
+        "Privacy-enhancing technologies",
+        "User studies & experiment design"
+      ],
+      "get": [
+        "Course coordination across campuses",
+        "NSF co-PIs",
+        "Research collaborations"
+      ],
+      "primary_area": "AI Safety/Privacy/Security",
+      "secondary_area": "HCI",
+      "keywords": [],
+      "email": "j.staddon@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/jessica-staddon.jpg",
+      "slide_index": 20,
+      "auto_keywords": [
+        "campuses nsf pis",
+        "design course coordination",
+        "pis research collaborations",
+        "privacy enhancing technologies",
+        "research safety operations",
+        "technologies user studies"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "youna-jung",
+      "name": "Youna Jung",
+      "location": "Arlington",
+      "give": [
+        "Access Controls, Privacy, Trust",
+        "Adaptive AI, Collaborative AI",
+        "AI for Assistive Technology",
+        "AI in Learning and Teaching",
+        "Responsible AI/AI Ethics/AI Persuasion"
+      ],
+      "get": [
+        "Collaborative Research & Grant",
+        "Cross-Campus Connections",
+        "Interdisciplinary Research Proposal"
+      ],
+      "primary_area": "AI, Cybersecurity, Ethics",
+      "secondary_area": "Smart City, eHealth, Cognition, Policies",
+      "keywords": [],
+      "email": "yo.jung@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/youna-jung.jpg",
+      "slide_index": 21,
+      "auto_keywords": [
+        "ai persuasion collaborative",
+        "assistive technology",
+        "collaborative research grant",
+        "interdisciplinary",
+        "privacy trust adaptive",
+        "teaching responsible ai"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "gabriela-gongora-svartzman",
+      "name": "Gabriela Gongora-Svartzman",
+      "location": "Miami",
+      "give": [
+        "GeoAI expertise",
+        "Responsible AI / AI for social impact",
+        "Multidisciplinary research (AI + OR + Eng)",
+        "Expertise in integrating real-world project into the classroom or even clients.",
+        "Experience with teaching and learning workshops, outreach, communities",
+        "AI in the classroom",
+        "ML"
+      ],
+      "get": [
+        "Cross-campus connections",
+        "Opportunities to integrate projects into practicum or similar courses",
+        "Learn from other’s research and experiences",
+        "Anyone interested in doing work for social impact"
+      ],
+      "primary_area": "GeoAI for Climate change, Responsible AI, Social Impact",
+      "secondary_area": "Pedagogical Innovation, Teaching + Learning",
+      "keywords": [
+        "Research key words: smart cities, climate, teaching, social impact work"
+      ],
+      "email": "g.gongorasvartzman@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/gabriela-gongora-svartzman.jpg",
+      "slide_index": 22,
+      "auto_keywords": [
+        "experience teaching",
+        "geoai expertise",
+        "opportunities integrate projects",
+        "outreach communities ai",
+        "research ai eng",
+        "research key words: smart cities, climate, teaching, social impact work",
+        "social impact multidisciplinary"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "oscar-veliz",
+      "name": "Oscar Veliz",
+      "location": "Seattle",
+      "give": [
+        "Expertise creating online video lessons",
+        "Created Khoury course on Quantum Computing",
+        "Expert in Accessibility",
+        "AI in the classroom"
+      ],
+      "get": [
+        "Awareness of current NEU research",
+        "Co-PI opportunities / collabs",
+        "Teaching best practices"
+      ],
+      "primary_area": "CS Pedagogy, AI",
+      "secondary_area": "Numerical Analsys, Quantum Computing, Game Theory",
+      "keywords": [
+        "Education",
+        "Quantum",
+        "Numerical"
+      ],
+      "email": "o.veliz@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/oscar-veliz.jpg",
+      "slide_index": 23,
+      "auto_keywords": [
+        "accessibility ai classroom",
+        "course quantum computing",
+        "current neu research",
+        "education",
+        "expertise creating online",
+        "lessons created khoury",
+        "numerical",
+        "opportunities collabs teaching",
+        "quantum"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "logan-schmidt",
+      "name": "Logan Schmidt",
+      "location": "Vancouver",
+      "give": [
+        "Experience with IRB and human subjects research",
+        "CS education and pedagogy context",
+        "Master's student projects for research, particularly in systems and privacy studies",
+        "Writing proposals"
+      ],
+      "get": [
+        "Collaborators with an orientation towards inclusive CS education",
+        "Collaborators interested in studying socio-technical systems and their impact on privacy"
+      ],
+      "primary_area": "Computer Science Education",
+      "secondary_area": "Privacy studies",
+      "keywords": [
+        "CS education"
+      ],
+      "email": "l.schmidt@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/logan-schmidt.jpg",
+      "slide_index": 24,
+      "auto_keywords": [
+        "cs education",
+        "inclusive cs education",
+        "irb human subjects",
+        "pedagogy context",
+        "studying socio technical",
+        "systems privacy studies",
+        "writing proposals collaborators"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "lama-hamandi",
+      "name": "Lama Hamandi",
+      "location": "Silicon Valley",
+      "give": [
+        "Algorithms & Data structure",
+        "Hardware activities for Align/systems courses"
+      ],
+      "get": [
+        "Adaptive AI",
+        "Multi-player games",
+        "Writing proposals"
+      ],
+      "primary_area": "CS Education",
+      "secondary_area": "HCI",
+      "keywords": [
+        "computing education",
+        "game-based learning",
+        "algorithms",
+        "learner experience",
+        "UI/UX",
+        "adaptive learning"
+      ],
+      "email": "l.hamandi@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/lama-hamandi.jpg",
+      "slide_index": 25,
+      "auto_keywords": [
+        "adaptive learning",
+        "algorithms",
+        "algorithms data structure",
+        "align systems courses",
+        "computing education",
+        "courses adaptive ai",
+        "game-based learning",
+        "games writing proposals",
+        "hardware activities align",
+        "learner experience",
+        "multi player",
+        "ui/ux"
+      ],
+      "provenance": "PPTX 2025"
+    },
+    {
+      "id": "michelle-borkin",
+      "name": "Michelle Borkin",
+      "location": "Boston",
+      "give": [
+        "Visualization expertise & collaboration",
+        "Service-Learning teaching",
+        "Domain expertise is in the sciences (astronomy, physics, biology, medical imaging)",
+        "New collaborations: I want to help you make the best visualizations!",
+        "Research expertise in education"
+      ],
+      "get": [],
+      "primary_area": "Data Visualization Secondary Research Areas: HCI",
+      "secondary_area": "",
+      "keywords": [
+        "multidimensional data",
+        "3D data and XR",
+        "tree & network visualization",
+        "perception and cognition theory",
+        "accessibility",
+        "and visualization for social good",
+        "CS education."
+      ],
+      "email": "m.borkin@northeastern.edu",
+      "links": [],
+      "photo": "data/photos/michelle-borkin.jpg",
+      "slide_index": 26,
+      "auto_keywords": [
+        "3d data and xr",
+        "accessibility",
+        "and visualization for social good",
+        "astronomy",
+        "collaborations want help",
+        "cs education.",
+        "domain expertise sciences",
+        "make best visualizations",
+        "multidimensional data",
+        "perception and cognition theory",
+        "service learning teaching",
+        "tree & network visualization",
+        "visualization expertise collaboration"
+      ],
+      "provenance": "PPTX 2025"
+    }
+  ],
+  "edges": {
+    "give_get": [
+      {
+        "source": "melanie-tory",
+        "target": "tala-talaei-khoei",
+        "score": 0.5159,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Research resources and support for NTT faculty\"  →  \"Collaborations with faculty across Northeastern campuses on interdisciplinary research and projects\""
+      },
+      {
+        "source": "melanie-tory",
+        "target": "hazra-imran",
+        "score": 0.5122,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"VIS design, Human-AI interaction expertise\"  →  \"Collaborations on real-time adaptive AI (especially beyond education domains)\""
+      },
+      {
+        "source": "melanie-tory",
+        "target": "tehmina-amjad",
+        "score": 0.5113,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"VIS design, Human-AI interaction expertise\"  →  \"Interdisciplinary collaborations (AI + science)\""
+      },
+      {
+        "source": "brianna-dym",
+        "target": "logan-schmidt",
+        "score": 0.6595,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Nontraditional CS education perspective, as a learner and educator\"  →  \"Collaborators with an orientation towards inclusive CS education\""
+      },
+      {
+        "source": "brianna-dym",
+        "target": "aanchan-mohan",
+        "score": 0.4495,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in qualitative research - interviews, discourse analysis\"  →  \"Collaboration in research with atypical speakers\""
+      },
+      {
+        "source": "brianna-dym",
+        "target": "felix-muzny",
+        "score": 0.4386,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Nontraditional CS education perspective, as a learner and educator\"  →  \"Anyone else working at the intersection of CSEd & NLP?\""
+      },
+      {
+        "source": "michael-correll",
+        "target": "brianna-dym",
+        "score": 0.4885,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Broad domain experiences\"  →  \"Folks looking for an expert perspective from one of my areas\""
+      },
+      {
+        "source": "michael-correll",
+        "target": "tehmina-amjad",
+        "score": 0.4749,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Broad domain experiences\"  →  \"New domains for explainable & trustworthy AI\""
+      },
+      {
+        "source": "michael-correll",
+        "target": "albert-lionelle",
+        "score": 0.457,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Critical lens on data practices + info design\"  →  \"Expanding curricular complexity tools to simplify and automate the process of data collection and analysis\""
+      },
+      {
+        "source": "aanchan-mohan",
+        "target": "felix-muzny",
+        "score": 0.4529,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Audio and speech processing expertise\"  →  \"Collaborator(s) (likely HCI?) to study how students/people learn about (*not use*) LLMs/AI models\""
+      },
+      {
+        "source": "aanchan-mohan",
+        "target": "tehmina-amjad",
+        "score": 0.4519,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Look into implementation and user issues with machine learning models e.g. model caching\"  →  \"New domains for explainable & trustworthy AI\""
+      },
+      {
+        "source": "aanchan-mohan",
+        "target": "brianna-dym",
+        "score": 0.4497,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Audio and speech processing expertise\"  →  \"Folks looking for an expert perspective from one of my areas\""
+      },
+      {
+        "source": "hazra-imran",
+        "target": "albert-lionelle",
+        "score": 0.6509,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Design of adaptive learning systems (policy-driven scaffolding, RL-based personalization)\"  →  \"Expanding feedback mechanisms within autograders and structured tools to support instructors\""
+      },
+      {
+        "source": "hazra-imran",
+        "target": "joydeep-mitra",
+        "score": 0.6293,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in programming and SQL education research (classroom deployments, real learners)\"  →  \"Explore/Develop research ideas in the software engineering/computer science education space\""
+      },
+      {
+        "source": "hazra-imran",
+        "target": "matt-higger",
+        "score": 0.6067,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in programming and SQL education research (classroom deployments, real learners)\"  →  \"Pedagogical Tool Development\""
+      },
+      {
+        "source": "felix-muzny",
+        "target": "logan-schmidt",
+        "score": 0.6,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Connections to the Center for Inclusive Computing and various kinds of data\"  →  \"Collaborators with an orientation towards inclusive CS education\""
+      },
+      {
+        "source": "felix-muzny",
+        "target": "hazra-imran",
+        "score": 0.5644,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Connections to the Center for Inclusive Computing and various kinds of data\"  →  \"Collaborations on real-time adaptive AI (especially beyond education domains)\""
+      },
+      {
+        "source": "felix-muzny",
+        "target": "tehmina-amjad",
+        "score": 0.5582,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Connections to the Center for Inclusive Computing and various kinds of data\"  →  \"Student research opportunities and datasets\""
+      },
+      {
+        "source": "albert-lionelle",
+        "target": "matt-higger",
+        "score": 0.6498,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Grading practices and how they affect various student groups and learning mindsets\"  →  \"Computing Final Grades\""
+      },
+      {
+        "source": "albert-lionelle",
+        "target": "joydeep-mitra",
+        "score": 0.6204,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"“Learning to learn” computer science\"  →  \"Explore/Develop research ideas in the software engineering/computer science education space\""
+      },
+      {
+        "source": "albert-lionelle",
+        "target": "gabriela-gongora-svartzman",
+        "score": 0.5317,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in CS Pedagogies\"  →  \"Opportunities to integrate projects into practicum or similar courses\""
+      },
+      {
+        "source": "huihui-wang",
+        "target": "tehmina-amjad",
+        "score": 0.5141,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Suggestions about NSF proposal preparation of some programs of EDU and TIP using my knowledge and network of the NSF as a former program director\"  →  \"Joint proposals (NSF, cross-campus initiatives)\""
+      },
+      {
+        "source": "huihui-wang",
+        "target": "jessica-staddon",
+        "score": 0.4822,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Suggestions about NSF proposal preparation of some programs of EDU and TIP using my knowledge and network of the NSF as a former program director\"  →  \"Course coordination across campuses\""
+      },
+      {
+        "source": "huihui-wang",
+        "target": "oscar-veliz",
+        "score": 0.4694,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Promote or advocate our practices/inititatives at ASEE, and IEEE Education Society as a board member and ACM EIGTRUST as an officer\"  →  \"Teaching best practices\""
+      },
+      {
+        "source": "john-a-guerra-gomez",
+        "target": "matt-higger",
+        "score": 0.5198,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"AI Coding\"  →  \"Or, at least, interest in AI driven development\""
+      },
+      {
+        "source": "john-a-guerra-gomez",
+        "target": "lama-hamandi",
+        "score": 0.5022,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"AI Coding\"  →  \"Adaptive AI\""
+      },
+      {
+        "source": "john-a-guerra-gomez",
+        "target": "tehmina-amjad",
+        "score": 0.4659,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"AI Coding\"  →  \"New domains for explainable & trustworthy AI\""
+      },
+      {
+        "source": "miguel-fuentes-cabrera",
+        "target": "tala-talaei-khoei",
+        "score": 0.7013,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Access to real-world research projects\"  →  \"Opportunities to integrate real-world projects into practicum and capstone courses\""
+      },
+      {
+        "source": "miguel-fuentes-cabrera",
+        "target": "tehmina-amjad",
+        "score": 0.6508,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Broadening participation in CS (research collaborations designed to open doors in STEM)\"  →  \"Interdisciplinary collaborations (AI + science)\""
+      },
+      {
+        "source": "miguel-fuentes-cabrera",
+        "target": "youna-jung",
+        "score": 0.6482,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Broadening participation in CS (research collaborations designed to open doors in STEM)\"  →  \"Interdisciplinary Research Proposal\""
+      },
+      {
+        "source": "joydeep-mitra",
+        "target": "logan-schmidt",
+        "score": 0.579,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Access to CS classrooms for conducting empirical studies related to CS education research\"  →  \"Collaborators with an orientation towards inclusive CS education\""
+      },
+      {
+        "source": "joydeep-mitra",
+        "target": "gabriela-gongora-svartzman",
+        "score": 0.5771,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Experience with working in interdisciplinary fields such as digital humanities\"  →  \"Opportunities to integrate projects into practicum or similar courses\""
+      },
+      {
+        "source": "joydeep-mitra",
+        "target": "tala-talaei-khoei",
+        "score": 0.5281,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Experience with working in interdisciplinary fields such as digital humanities\"  →  \"Collaborations with faculty across Northeastern campuses on interdisciplinary research and projects\""
+      },
+      {
+        "source": "matt-higger",
+        "target": "hazra-imran",
+        "score": 0.5075,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Seeking collaborators / applications for new AAC tool: use eye gaze / face or hand poses to input letters to computer (student research scheduled for Fall 2026) old youtube demo.  Low time commitment / relevant expertise collaborators very welcome here!\"  →  \"Partnerships for multimodal sensing (affect, physiological signals, interaction data)\""
+      },
+      {
+        "source": "matt-higger",
+        "target": "tehmina-amjad",
+        "score": 0.5072,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Seeking collaborators / applications for new AAC tool: use eye gaze / face or hand poses to input letters to computer (student research scheduled for Fall 2026) old youtube demo.  Low time commitment / relevant expertise collaborators very welcome here!\"  →  \"Joint proposals (NSF, cross-campus initiatives)\""
+      },
+      {
+        "source": "matt-higger",
+        "target": "mahsan-nourani",
+        "score": 0.4776,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Seeking collaborators / applications for new AAC tool: use eye gaze / face or hand poses to input letters to computer (student research scheduled for Fall 2026) old youtube demo.  Low time commitment / relevant expertise collaborators very welcome here!\"  →  \"Collaborations on AI literacy interventions\""
+      },
+      {
+        "source": "tala-talaei-khoei",
+        "target": "matt-higger",
+        "score": 0.517,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in cybersecurity, AI, ML, and NLP, including problem abstraction and solution design\"  →  \"Or, at least, interest in AI driven development\""
+      },
+      {
+        "source": "tala-talaei-khoei",
+        "target": "joydeep-mitra",
+        "score": 0.4965,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in cybersecurity, AI, ML, and NLP, including problem abstraction and solution design\"  →  \"Develop pedagogical tools and methods related (but not restricted) to study the use of AI-assisted programming by students\""
+      },
+      {
+        "source": "tala-talaei-khoei",
+        "target": "tehmina-amjad",
+        "score": 0.4906,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in cybersecurity, AI, ML, and NLP, including problem abstraction and solution design\"  →  \"New domains for explainable & trustworthy AI\""
+      },
+      {
+        "source": "mohit-singhal",
+        "target": "brianna-dym",
+        "score": 0.4727,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in understanding security and privacy concerns of users on social media platforms and disentangling causal insights.\"  →  \"Connections for privacy research!\""
+      },
+      {
+        "source": "mohit-singhal",
+        "target": "logan-schmidt",
+        "score": 0.4185,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in understanding security and privacy concerns of users on social media platforms and disentangling causal insights.\"  →  \"Collaborators interested in studying socio-technical systems and their impact on privacy\""
+      },
+      {
+        "source": "mohit-singhal",
+        "target": "felix-muzny",
+        "score": 0.3543,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in data analysis and creation of tools to obtain social media data\"  →  \"Collaborator(s) (likely HCI?) to study how students/people learn about (*not use*) LLMs/AI models\""
+      },
+      {
+        "source": "tehmina-amjad",
+        "target": "hazra-imran",
+        "score": 0.5731,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Interdisciplinary AI applications (geoscience, scientometrics)\"  →  \"Collaborations on real-time adaptive AI (especially beyond education domains)\""
+      },
+      {
+        "source": "tehmina-amjad",
+        "target": "tala-talaei-khoei",
+        "score": 0.5628,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Interdisciplinary AI applications (geoscience, scientometrics)\"  →  \"Partnerships focused on AI for social impact, particularly in areas related to security, ethics, and societal well-being\""
+      },
+      {
+        "source": "tehmina-amjad",
+        "target": "miguel-fuentes-cabrera",
+        "score": 0.5587,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Interdisciplinary AI applications (geoscience, scientometrics)\"  →  \"Collaborations in AI for social impact\""
+      },
+      {
+        "source": "mahsan-nourani",
+        "target": "tehmina-amjad",
+        "score": 0.6028,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Domain-specific AI design\"  →  \"New domains for explainable & trustworthy AI\""
+      },
+      {
+        "source": "mahsan-nourani",
+        "target": "matt-higger",
+        "score": 0.5637,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in Human-AI collaboration (trust, cognitive biases, mental models, RAI design)\"  →  \"Or, at least, interest in AI driven development\""
+      },
+      {
+        "source": "mahsan-nourani",
+        "target": "lama-hamandi",
+        "score": 0.5567,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Domain-specific AI design\"  →  \"Adaptive AI\""
+      },
+      {
+        "source": "deahan-yu",
+        "target": "tehmina-amjad",
+        "score": 0.4289,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Broad applications of data science\"  →  \"Student research opportunities and datasets\""
+      },
+      {
+        "source": "deahan-yu",
+        "target": "melanie-tory",
+        "score": 0.3855,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Broad applications of data science\"  →  \"Data monitoring applications\""
+      },
+      {
+        "source": "deahan-yu",
+        "target": "michael-correll",
+        "score": 0.3782,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Broad applications of data science\"  →  \"Cool data\""
+      },
+      {
+        "source": "jessica-staddon",
+        "target": "brianna-dym",
+        "score": 0.6029,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Privacy-enhancing technologies\"  →  \"Connections for privacy research!\""
+      },
+      {
+        "source": "jessica-staddon",
+        "target": "logan-schmidt",
+        "score": 0.4876,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Privacy-enhancing technologies\"  →  \"Collaborators interested in studying socio-technical systems and their impact on privacy\""
+      },
+      {
+        "source": "jessica-staddon",
+        "target": "gabriela-gongora-svartzman",
+        "score": 0.4359,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"User studies & experiment design\"  →  \"Learn from other’s research and experiences\""
+      },
+      {
+        "source": "youna-jung",
+        "target": "mahsan-nourani",
+        "score": 0.5994,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Responsible AI/AI Ethics/AI Persuasion\"  →  \"Respoinsible AI in the wild, e.g., AI in Policy, Research on AI’s societal impacts\""
+      },
+      {
+        "source": "youna-jung",
+        "target": "lama-hamandi",
+        "score": 0.5967,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Adaptive AI, Collaborative AI\"  →  \"Adaptive AI\""
+      },
+      {
+        "source": "youna-jung",
+        "target": "tehmina-amjad",
+        "score": 0.5191,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Adaptive AI, Collaborative AI\"  →  \"Interdisciplinary collaborations (AI + science)\""
+      },
+      {
+        "source": "gabriela-gongora-svartzman",
+        "target": "tala-talaei-khoei",
+        "score": 0.6797,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Responsible AI / AI for social impact\"  →  \"Partnerships focused on AI for social impact, particularly in areas related to security, ethics, and societal well-being\""
+      },
+      {
+        "source": "gabriela-gongora-svartzman",
+        "target": "tehmina-amjad",
+        "score": 0.6443,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Multidisciplinary research (AI + OR + Eng)\"  →  \"Interdisciplinary collaborations (AI + science)\""
+      },
+      {
+        "source": "gabriela-gongora-svartzman",
+        "target": "miguel-fuentes-cabrera",
+        "score": 0.6388,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Responsible AI / AI for social impact\"  →  \"Collaborations in AI for social impact\""
+      },
+      {
+        "source": "oscar-veliz",
+        "target": "joydeep-mitra",
+        "score": 0.5611,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"AI in the classroom\"  →  \"Develop pedagogical tools and methods related (but not restricted) to study the use of AI-assisted programming by students\""
+      },
+      {
+        "source": "oscar-veliz",
+        "target": "matt-higger",
+        "score": 0.5535,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"AI in the classroom\"  →  \"Or, at least, interest in AI driven development\""
+      },
+      {
+        "source": "oscar-veliz",
+        "target": "brianna-dym",
+        "score": 0.537,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expert in Accessibility\"  →  \"Folks looking for an expert perspective from one of my areas\""
+      },
+      {
+        "source": "logan-schmidt",
+        "target": "joydeep-mitra",
+        "score": 0.6379,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Master's student projects for research, particularly in systems and privacy studies\"  →  \"Explore/Develop research ideas in the software engineering/computer science education space\""
+      },
+      {
+        "source": "logan-schmidt",
+        "target": "brianna-dym",
+        "score": 0.6183,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Master's student projects for research, particularly in systems and privacy studies\"  →  \"Connections for privacy research!\""
+      },
+      {
+        "source": "logan-schmidt",
+        "target": "gabriela-gongora-svartzman",
+        "score": 0.6137,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Master's student projects for research, particularly in systems and privacy studies\"  →  \"Opportunities to integrate projects into practicum or similar courses\""
+      },
+      {
+        "source": "lama-hamandi",
+        "target": "albert-lionelle",
+        "score": 0.4449,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Algorithms & Data structure\"  →  \"Expanding curricular complexity tools to simplify and automate the process of data collection and analysis\""
+      },
+      {
+        "source": "lama-hamandi",
+        "target": "tehmina-amjad",
+        "score": 0.4326,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Hardware activities for Align/systems courses\"  →  \"Student research opportunities and datasets\""
+      },
+      {
+        "source": "lama-hamandi",
+        "target": "matt-higger",
+        "score": 0.4098,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Hardware activities for Align/systems courses\"  →  \"Storing math problems/solutions across semesters\""
+      },
+      {
+        "source": "michelle-borkin",
+        "target": "tehmina-amjad",
+        "score": 0.6316,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Visualization expertise & collaboration\"  →  \"Interdisciplinary collaborations (AI + science)\""
+      },
+      {
+        "source": "michelle-borkin",
+        "target": "brianna-dym",
+        "score": 0.6307,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Visualization expertise & collaboration\"  →  \"Collaborators I can recommend student project seekers to!\""
+      },
+      {
+        "source": "michelle-borkin",
+        "target": "hazra-imran",
+        "score": 0.6299,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Visualization expertise & collaboration\"  →  \"Partnerships for multimodal sensing (affect, physiological signals, interaction data)\""
+      }
+    ],
+    "topic": [
+      {
+        "source": "melanie-tory",
+        "target": "michelle-borkin",
+        "score": 0.6862,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "melanie-tory",
+        "target": "michael-correll",
+        "score": 0.6695,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "mahsan-nourani",
+        "target": "melanie-tory",
+        "score": 0.6247,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "brianna-dym",
+        "target": "logan-schmidt",
+        "score": 0.7971,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "brianna-dym",
+        "target": "felix-muzny",
+        "score": 0.6283,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "brianna-dym",
+        "target": "jessica-staddon",
+        "score": 0.6141,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "michael-correll",
+        "target": "michelle-borkin",
+        "score": 0.7066,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "john-a-guerra-gomez",
+        "target": "michael-correll",
+        "score": 0.6572,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "aanchan-mohan",
+        "target": "hazra-imran",
+        "score": 0.5235,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "aanchan-mohan",
+        "target": "felix-muzny",
+        "score": 0.4779,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "aanchan-mohan",
+        "target": "youna-jung",
+        "score": 0.4402,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "hazra-imran",
+        "target": "matt-higger",
+        "score": 0.6488,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "hazra-imran",
+        "target": "mahsan-nourani",
+        "score": 0.6418,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "hazra-imran",
+        "target": "lama-hamandi",
+        "score": 0.6018,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "felix-muzny",
+        "target": "joydeep-mitra",
+        "score": 0.6393,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "felix-muzny",
+        "target": "logan-schmidt",
+        "score": 0.5868,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "albert-lionelle",
+        "target": "logan-schmidt",
+        "score": 0.5727,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "albert-lionelle",
+        "target": "joydeep-mitra",
+        "score": 0.5723,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "albert-lionelle",
+        "target": "lama-hamandi",
+        "score": 0.5132,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "huihui-wang",
+        "target": "jessica-staddon",
+        "score": 0.5887,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "huihui-wang",
+        "target": "youna-jung",
+        "score": 0.569,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "huihui-wang",
+        "target": "oscar-veliz",
+        "score": 0.5682,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "john-a-guerra-gomez",
+        "target": "mahsan-nourani",
+        "score": 0.6644,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "john-a-guerra-gomez",
+        "target": "michelle-borkin",
+        "score": 0.6276,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "miguel-fuentes-cabrera",
+        "target": "tala-talaei-khoei",
+        "score": 0.6486,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "miguel-fuentes-cabrera",
+        "target": "tehmina-amjad",
+        "score": 0.6156,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "gabriela-gongora-svartzman",
+        "target": "miguel-fuentes-cabrera",
+        "score": 0.5279,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "joydeep-mitra",
+        "target": "logan-schmidt",
+        "score": 0.6299,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "joydeep-mitra",
+        "target": "lama-hamandi",
+        "score": 0.6207,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "matt-higger",
+        "target": "melanie-tory",
+        "score": 0.6182,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "mahsan-nourani",
+        "target": "matt-higger",
+        "score": 0.6026,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "tala-talaei-khoei",
+        "target": "youna-jung",
+        "score": 0.6741,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "gabriela-gongora-svartzman",
+        "target": "tala-talaei-khoei",
+        "score": 0.6103,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "jessica-staddon",
+        "target": "mohit-singhal",
+        "score": 0.6392,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "brianna-dym",
+        "target": "mohit-singhal",
+        "score": 0.6101,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "mohit-singhal",
+        "target": "tala-talaei-khoei",
+        "score": 0.5802,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "tala-talaei-khoei",
+        "target": "tehmina-amjad",
+        "score": 0.6066,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "tehmina-amjad",
+        "target": "youna-jung",
+        "score": 0.5897,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "maryam-tanha",
+        "target": "youna-jung",
+        "score": 0.5506,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "maryam-tanha",
+        "target": "tala-talaei-khoei",
+        "score": 0.5291,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "jessica-staddon",
+        "target": "maryam-tanha",
+        "score": 0.4819,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "deahan-yu",
+        "target": "tala-talaei-khoei",
+        "score": 0.5078,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "deahan-yu",
+        "target": "tehmina-amjad",
+        "score": 0.5003,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "deahan-yu",
+        "target": "miguel-fuentes-cabrera",
+        "score": 0.4685,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "jessica-staddon",
+        "target": "youna-jung",
+        "score": 0.6047,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "mahsan-nourani",
+        "target": "youna-jung",
+        "score": 0.6184,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "gabriela-gongora-svartzman",
+        "target": "tehmina-amjad",
+        "score": 0.5879,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "gabriela-gongora-svartzman",
+        "target": "youna-jung",
+        "score": 0.5727,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "lama-hamandi",
+        "target": "oscar-veliz",
+        "score": 0.5604,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      },
+      {
+        "source": "oscar-veliz",
+        "target": "youna-jung",
+        "score": 0.5137,
+        "layer": "topic",
+        "directed": false,
+        "why": ""
+      }
+    ],
+    "keyword": [
+      {
+        "source": "deahan-yu",
+        "target": "melanie-tory",
+        "score": 0.1538,
+        "layer": "keyword",
+        "directed": false,
+        "why": "applications, data, faculty, health"
+      },
+      {
+        "source": "logan-schmidt",
+        "target": "melanie-tory",
+        "score": 0.1429,
+        "layer": "keyword",
+        "directed": false,
+        "why": "human, proposals, studies, subjects"
+      },
+      {
+        "source": "melanie-tory",
+        "target": "mohit-singhal",
+        "score": 0.1111,
+        "layer": "keyword",
+        "directed": false,
+        "why": "collaborations, data, faculty"
+      },
+      {
+        "source": "brianna-dym",
+        "target": "logan-schmidt",
+        "score": 0.1071,
+        "layer": "keyword",
+        "directed": false,
+        "why": "collaborators, education, privacy"
+      },
+      {
+        "source": "john-a-guerra-gomez",
+        "target": "michael-correll",
+        "score": 0.1212,
+        "layer": "keyword",
+        "directed": false,
+        "why": "data, grant, information, visualization"
+      },
+      {
+        "source": "deahan-yu",
+        "target": "michael-correll",
+        "score": 0.1,
+        "layer": "keyword",
+        "directed": false,
+        "why": "data, grant, information"
+      },
+      {
+        "source": "hazra-imran",
+        "target": "lama-hamandi",
+        "score": 0.1282,
+        "layer": "keyword",
+        "directed": false,
+        "why": "adaptive, data, education, learning (+1 more)"
+      },
+      {
+        "source": "felix-muzny",
+        "target": "joydeep-mitra",
+        "score": 0.1538,
+        "layer": "keyword",
+        "directed": false,
+        "why": "digital, education, humanities, students"
+      },
+      {
+        "source": "deahan-yu",
+        "target": "john-a-guerra-gomez",
+        "score": 0.1034,
+        "layer": "keyword",
+        "directed": false,
+        "why": "data, grant, information"
+      },
+      {
+        "source": "john-a-guerra-gomez",
+        "target": "mohit-singhal",
+        "score": 0.1034,
+        "layer": "keyword",
+        "directed": false,
+        "why": "collaborations, data, insights"
+      },
+      {
+        "source": "miguel-fuentes-cabrera",
+        "target": "tala-talaei-khoei",
+        "score": 0.2,
+        "layer": "keyword",
+        "directed": false,
+        "why": "campuses, collaborations, impact, projects (+1 more)"
+      },
+      {
+        "source": "miguel-fuentes-cabrera",
+        "target": "mohit-singhal",
+        "score": 0.1071,
+        "layer": "keyword",
+        "directed": false,
+        "why": "collaborations, faculty, social"
+      },
+      {
+        "source": "gabriela-gongora-svartzman",
+        "target": "tala-talaei-khoei",
+        "score": 0.1111,
+        "layer": "keyword",
+        "directed": false,
+        "why": "impact, projects, social"
+      },
+      {
+        "source": "deahan-yu",
+        "target": "tehmina-amjad",
+        "score": 0.125,
+        "layer": "keyword",
+        "directed": false,
+        "why": "applications, information, nlp"
+      },
+      {
+        "source": "mahsan-nourani",
+        "target": "youna-jung",
+        "score": 0.1,
+        "layer": "keyword",
+        "directed": false,
+        "why": "grant, responsible"
+      },
+      {
+        "source": "lama-hamandi",
+        "target": "logan-schmidt",
+        "score": 0.125,
+        "layer": "keyword",
+        "directed": false,
+        "why": "education, proposals, systems, writing"
+      }
+    ]
+  },
+  "filters": {
+    "primary_areas": [
+      "AI Safety/Privacy/Security",
+      "AI, Cybersecurity, Ethics",
+      "AI, ML, NLP, and Computer Vision",
+      "AI/ML for Information Retrieval",
+      "Android malware detection and analysis",
+      "Broadening Participation",
+      "Broadening Participation in Computing",
+      "CS Education",
+      "CS Pedagogy, AI",
+      "Computer Science Education",
+      "Computing and Engineering Education",
+      "Data Visualization Secondary Research Areas: HCI",
+      "GeoAI for Climate change, Responsible AI, Social Impact",
+      "HCI, Security & Privacy",
+      "Human-centered AI (HCC)",
+      "Human-centered adaptive AI systems",
+      "Information Visualization",
+      "ML + Materials Science",
+      "MRI Analysis (ML & Signal Processing)",
+      "NLP/ML in Health",
+      "Software Engineering",
+      "Speech, audio and language",
+      "Visualization"
+    ],
+    "locations": [
+      "Arlington",
+      "Boston",
+      "Miami",
+      "Oakland",
+      "Online",
+      "Portland",
+      "Seattle",
+      "Silicon Valley",
+      "Vancouver"
+    ]
+  },
+  "meta": {
+    "top_k": 3,
+    "score_floors": {
+      "give_get": 0.3,
+      "topic": 0.4,
+      "keyword": 0.1
+    },
+    "model": "all-MiniLM-L6-v2",
+    "n_researchers": 25
+  }
+}

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Khoury Researcher Connections</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* About-page-only overrides: single-column document layout */
+    body {
+      display: block;
+      height: auto;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+    .about-wrap { max-width: 720px; margin: 0 auto; padding: 32px 24px 80px; }
+    .about-wrap h1 { font-size: 28px; margin: 16px 0 6px; }
+    .about-wrap .meta { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+    .about-wrap h2 { font-size: 18px; margin-top: 32px; }
+    .about-wrap p, .about-wrap li { font-size: 15px; line-height: 1.65; color: var(--text); }
+    .about-wrap p { margin: 12px 0; }
+    .about-wrap a { color: var(--accent); }
+    .about-wrap code,
+    .about-wrap kbd {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    .about-wrap blockquote {
+      margin: 16px 0;
+      padding: 8px 16px;
+      border-left: 3px solid var(--accent);
+      background: rgba(88, 166, 255, 0.06);
+      color: var(--muted);
+      font-style: italic;
+    }
+    .about-wrap .nav { margin-bottom: 18px; }
+    .about-wrap .nav a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+    .about-wrap .nav a:hover { color: var(--text); }
+    .about-wrap .stack-grid {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 6px 16px;
+      font-size: 14px;
+      margin: 12px 0 24px;
+    }
+    .about-wrap .stack-grid dt { color: var(--muted); }
+    .about-wrap .stack-grid dd { margin: 0; }
+  </style>
+</head>
+<body>
+  <div class="about-wrap">
+    <div class="nav"><a href="index.html">← Back to the graph</a></div>
+
+    <h1>About this project</h1>
+    <p class="meta">A short story about how the Khoury Researcher Connections viz came together. Khoury Research Day · May 4, 2026.</p>
+
+    <h2>What this is</h2>
+    <p>
+      Each year, Khoury College runs a "Research Day" where faculty and students share a one-slide
+      summary of what they can <em>give</em> (offer collaborators) and what they want to <em>get</em>
+      (need help with). It's a thoughtful format — but the slides live in a PowerPoint deck that
+      most people never re-open after the event.
+    </p>
+    <p>
+      This tool turns that deck into a persistent, interactive directory. It surfaces three different
+      kinds of connections between researchers as toggleable layers:
+    </p>
+    <ul>
+      <li><strong>Give → Get matches</strong> — when one person's "give" semantically matches another's "get". A marketplace view that crosses topic clusters.</li>
+      <li><strong>Topic similarity</strong> — researchers who think about similar things, based on their full profile.</li>
+      <li><strong>Shared keywords</strong> — researchers whose self-reported (and auto-extracted) keywords overlap.</li>
+    </ul>
+
+    <h2>How it was built</h2>
+    <p>
+      The code was written by <a href="https://claude.com/claude-code">Claude Code</a> (Anthropic's
+      coding agent) on behalf of John A. Guerra Gómez, in a single working session — about an
+      afternoon, end-to-end. John drove the direction: framing the problem, choosing between
+      design alternatives, reviewing the visualization, and asking for the refinements that shaped
+      the final feel. Claude wrote the parser, the embedding pipeline, the D3 frontend, and this
+      page. The flow followed a deliberate path:
+    </p>
+    <ul>
+      <li><strong>Brainstorming.</strong> First we explored what kinds of connections to surface (similarity vs. complementarity vs. shared keywords) and who the audience was. We landed on "all three, as toggleable layers, in a persistent department directory."</li>
+      <li><strong>Planning.</strong> Wrote a focused v1 plan: PPTX-only ingestion, Python preprocessing, a static D3 frontend, deferred auto-enrichment to v2. Constraints over features.</li>
+      <li><strong>Implementation.</strong> Built the Python pipeline (PowerPoint parsing → sentence-transformer embeddings → similarity matrices → graph JSON), then the D3 force-directed frontend. End-to-end in well under a day.</li>
+      <li><strong>Iteration.</strong> Several rounds of small, sharp refinements — animations on layer toggle, edge labels on demand, scented filter chips with sparkbars, a viewport-scale technique to keep nodes visible, collapsible side panels for mobile.</li>
+    </ul>
+
+    <h2>The stack</h2>
+    <dl class="stack-grid">
+      <dt>Pipeline</dt>
+      <dd>Python · python-pptx · sentence-transformers (<code>all-MiniLM-L6-v2</code>) · scikit-learn</dd>
+      <dt>Frontend</dt>
+      <dd>Vanilla JS · D3 v7 (force layout, scales, zoom, transitions)</dd>
+      <dt>Hosting</dt>
+      <dd>Plain static files, deployable via <code>rsync</code></dd>
+      <dt>No backend</dt>
+      <dd>The whole thing is a Python build step plus a single <code>graph.json</code></dd>
+    </dl>
+
+    <h2>What was hard (and what wasn't)</h2>
+    <p>
+      The fastest part was the pipeline. python-pptx reads slides cleanly, sentence-transformer
+      embeddings are stable enough that "give-mean vs. get-mean" cosine similarity gave honestly
+      meaningful matches on the first try — including a delightful one where the system correctly
+      paired "AI Coding" (a give) with "Vibe Coding expertise" (a get) across two researchers who
+      hadn't met.
+    </p>
+    <p>
+      The slowest parts were the surprises:
+    </p>
+    <ul>
+      <li>An SVG <code>&lt;clipPath&gt;</code> bug that silently hid every photo because <code>userSpaceOnUse</code> evaluated the clip in the SVG root frame instead of the per-node translated frame. Switching to CSS <code>clip-path: circle(50%)</code> on the SVG image was a one-line fix once we figured out what was going on.</li>
+      <li>A version mismatch between the latest KeyBERT and sentence-transformers 5.x. Replaced KeyBERT with a 25-line equivalent (<code>CountVectorizer</code> + cosine similarity + MMR for diversity). Less dependency surface, just as good for our scale.</li>
+      <li>"Visualization" and "information visualization" don't share Jaccard tokens when treated as multi-word phrases. Tokenizing keywords down to individual content words made the keyword layer actually work.</li>
+    </ul>
+
+    <h2>One small infovis trick</h2>
+    <p>
+      The graph is wrapped in two d3 scales (<code>xScale</code>, <code>yScale</code>) that map
+      simulation coordinates to screen coordinates with a margin. The simulation runs unconstrained;
+      the scales adapt their domain to the bounding box of the current layout (with a soft lerp to
+      avoid jitter). This guarantees every researcher stays inside the canvas with their photo and
+      label fully visible — no matter how the layout drifts when you toggle layers, drag a node, or
+      resize the window. It's a small piece of code with a disproportionate UX payoff.
+    </p>
+
+    <h2>What's next</h2>
+    <p>
+      v1 covers a single year of Research Day attendees. The natural follow-ups, in order of
+      ambition:
+    </p>
+    <ul>
+      <li>Auto-enrichment from public sources (Khoury directory, DBLP, Google Scholar) so non-attendees show up too.</li>
+      <li>A 2D embedding/UMAP map as a secondary view, once the corpus grows past ~80 researchers (it's too unstable at N=24).</li>
+      <li>Profile claiming so people can keep their bullets, photos, and keywords up to date without waiting for the next Research Day.</li>
+    </ul>
+
+    <p style="margin-top: 32px; color: var(--muted); font-size: 13px;">
+      Source data: <em>Khoury Research Day Give/Get Slides</em>.
+      Written by <a href="https://claude.com/claude-code">Claude Code</a> on behalf of
+      John A. Guerra Gómez.
+    </p>
+  </div>
+</body>
+</html>
