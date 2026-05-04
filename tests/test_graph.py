@@ -18,7 +18,7 @@ GRAPH_PATH = REPO / "public" / "data" / "graph.json"
 
 LAYERS = ("give_get", "topic", "keyword")
 # Mirrors build_graph.py — keep these in sync if the floors change there.
-SCORE_FLOORS = {"give_get": 0.30, "topic": 0.40, "keyword": 0.05}
+SCORE_FLOORS = {"give_get": 0.30, "topic": 0.40, "keyword": 0.10}
 TOP_K = 3
 
 

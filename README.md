@@ -10,7 +10,7 @@ The graph shows three different *kinds* of connection, each as a toggleable laye
 
 Edges are top-3 per researcher per layer with score floors, so density stays manageable at any corpus size. Hover any edge to see *why* the connection exists. Click a researcher to see their full give/get bullets plus their top connections; turn on **Focus** to dim the rest of the graph and see only that person's neighborhood.
 
-Live at: <https://johnguerra.co/khouryResearch> *(when deployed)*
+Live at: <https://johnguerra.co/viz/khouryResearch/> *(when deployed)*
 
 ## Project layout
 
