@@ -53,30 +53,13 @@
 
   <aside class="controls">
     <section>
-      <h2>Connection layers</h2>
-      <label class="layer-toggle layer-give-get">
-        <input type="checkbox" data-layer="give_get" checked />
-        <span class="swatch"></span>
-        <span>Give → Get matches</span>
-        <span class="count" id="count-give_get"></span>
-      </label>
-      <label class="layer-toggle layer-topic">
-        <input type="checkbox" data-layer="topic" />
-        <span class="swatch"></span>
-        <span>Topic similarity</span>
-        <span class="count" id="count-topic"></span>
-      </label>
-      <label class="layer-toggle layer-keyword">
-        <input type="checkbox" data-layer="keyword" />
-        <span class="swatch"></span>
-        <span>Shared keywords</span>
-        <span class="count" id="count-keyword"></span>
-      </label>
+      <h2>Display</h2>
       <label class="layer-toggle">
         <input type="checkbox" id="show-labels" />
         <span class="swatch" style="visibility:hidden"></span>
         <span>Show edge labels</span>
       </label>
+      <p class="hint">Use the pills above the graph to switch connection layers.</p>
     </section>
 
     <section>
@@ -92,6 +75,15 @@
       <h3 class="filter-sub">Topic <span class="filter-sub-hint">(keywords on ≥2 researchers)</span></h3>
       <div id="topic-chips" class="chips"></div>
       <button type="button" id="reset-filters" class="reset">Clear filters</button>
+    </section>
+
+    <section>
+      <details class="advanced">
+        <summary>Edge contrast</summary>
+        <p class="hint">Score below "faint" → minimum opacity; above "bold" → maximum. Tune per layer.</p>
+        <div id="score-range"></div>
+        <button type="button" id="reset-ranges" class="reset">Reset to defaults</button>
+      </details>
     </section>
 
     <section>
@@ -114,6 +106,26 @@
   </aside>
 
   <main class="canvas">
+    <div class="canvas-bar">
+      <h2 id="view-title" class="view-title" aria-live="polite">All researchers</h2>
+      <div class="layer-pills" role="group" aria-label="Connection layers">
+        <button type="button" class="layer-pill layer-give-get active" data-layer="give_get" aria-pressed="true">
+          <span class="layer-pill-swatch"></span>
+          Give → Get
+          <span class="layer-pill-count" id="count-give_get"></span>
+        </button>
+        <button type="button" class="layer-pill layer-topic" data-layer="topic" aria-pressed="false">
+          <span class="layer-pill-swatch"></span>
+          Topics
+          <span class="layer-pill-count" id="count-topic"></span>
+        </button>
+        <button type="button" class="layer-pill layer-keyword" data-layer="keyword" aria-pressed="false">
+          <span class="layer-pill-swatch"></span>
+          Keywords
+          <span class="layer-pill-count" id="count-keyword"></span>
+        </button>
+      </div>
+    </div>
     <svg id="graph"></svg>
     <div id="empty-state" class="canvas-empty" hidden role="status" aria-live="polite">
       <p class="canvas-empty-headline">No researchers match these filters.</p>
