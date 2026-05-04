@@ -57,7 +57,15 @@
     <section>
       <h2>Filter</h2>
       <input type="search" id="search" placeholder="Search name, bullets, keywords…" />
+      <div class="scope-bar" role="radiogroup" aria-label="Search scope">
+        <button type="button" class="scope-btn active" data-scope="all">All</button>
+        <button type="button" class="scope-btn" data-scope="give">Can give</button>
+        <button type="button" class="scope-btn" data-scope="get">Wants to get</button>
+      </div>
+      <h3 class="filter-sub">Location</h3>
       <div id="location-chips" class="chips"></div>
+      <h3 class="filter-sub">Topic <span class="filter-sub-hint">(keywords on ≥2 researchers)</span></h3>
+      <div id="topic-chips" class="chips"></div>
       <button type="button" id="reset-filters" class="reset">Clear filters</button>
     </section>
 

@@ -89,6 +89,18 @@ rsync -auvz public/ user@host:/var/www/khoury-connections/
 
 The parser picks the most-square image per slide as the headshot. When that's wrong (e.g. a slide's only image is a group photo), drop a real headshot in `pipeline/photo_overrides/<slug>.<ext>` and re-run the pipeline. The slug is the researcher's name lowercased and hyphen-separated (see the `id` field in `pipeline/researchers.json`).
 
+## Tests
+
+```bash
+node --test tests/lib.test.mjs    # frontend pure-logic (focus + filters)
+python3 -m unittest tests.test_graph    # pipeline output invariants
+```
+
+The frontend tests import the pure helpers from `public/lib.js` directly — no
+DOM, no headless browser. The pipeline test runs against the existing
+`public/data/graph.json`, so re-run the pipeline before testing if you've
+edited `pipeline/`.
+
 ## Stack
 
 - **Pipeline**: Python 3.12 · python-pptx · sentence-transformers (`all-MiniLM-L6-v2`) · scikit-learn · Pillow

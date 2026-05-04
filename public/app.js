@@ -5,7 +5,15 @@
 // All dynamic UI is built with DOM methods (createElement + textContent) so
 // we never touch innerHTML — escaping is guaranteed structurally.
 
-const LAYERS = ["give_get", "topic", "keyword"];
+import {
+  LAYERS,
+  normalizeTopic,
+  topicsForNode,
+  buildEdgesByNode,
+  neighborIdsOf as neighborIdsOfPure,
+  nodeMatchesFilters,
+} from "./lib.js";
+
 const LAYER_LABELS = {
   give_get: "Give → Get",
   topic: "Topic similarity",
@@ -16,7 +24,9 @@ const state = {
   data: null,
   active: new Set(["give_get"]),
   searchTerm: "",
+  searchScope: "all", // 'all' | 'give' | 'get'
   selectedLocations: new Set(),
+  selectedTopics: new Set(),
   selectedId: null,
   focusOnSelection: true,        // on by default — clicking a researcher dims the rest
   showLabels: false,
@@ -161,25 +171,61 @@ async function init() {
   state.data = await res.json();
   state.data.nodes.forEach((n) => state.nodeIndex.set(n.id, n));
 
-  for (const layer of LAYERS) {
-    const map = state.edgesByNode[layer];
-    for (const e of state.data.edges[layer]) {
-      const list = (id) => map.get(id) || (map.set(id, []), map.get(id));
-      list(e.source).push({ ...e, otherId: e.target });
-      if (e.directed) {
-        list(e.target).push({ ...e, otherId: e.source, incoming: true });
-      } else {
-        list(e.target).push({ ...e, otherId: e.source });
-      }
-    }
-  }
+  state.edgesByNode = buildEdgesByNode(state.data.edges);
 
   document.getElementById("meta-counts").textContent =
     `${state.data.meta.n_researchers} researchers • model: ${state.data.meta.model}`;
 
   buildLocationChips();
+  buildTopicChips();
   bindControls();
   buildGraph();
+}
+
+function buildTopicChips() {
+  const container = document.getElementById("topic-chips");
+  while (container.firstChild) container.removeChild(container.firstChild);
+
+  // Tally how many researchers carry each normalized keyword. We only chip
+  // topics shared by at least 2 researchers — singletons would balloon the
+  // panel without enabling any cross-researcher filtering.
+  const counts = new Map();
+  for (const n of state.data.nodes) {
+    for (const t of topicsForNode(n)) {
+      counts.set(t, (counts.get(t) || 0) + 1);
+    }
+  }
+  const shared = [...counts.entries()]
+    .filter(([, c]) => c >= 2)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  if (!shared.length) {
+    const empty = document.createElement("p");
+    empty.className = "hint";
+    empty.textContent = "No keywords shared between researchers.";
+    container.appendChild(empty);
+    return;
+  }
+  const max = Math.max(1, ...shared.map(([, c]) => c));
+  for (const [topic, count] of shared) {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "chip";
+    chip.style.setProperty("--scent", `${(count / max) * 100}%`);
+    const label = document.createElement("span");
+    label.textContent = topic;
+    chip.appendChild(label);
+    const cnt = document.createElement("span");
+    cnt.className = "count-paren";
+    cnt.textContent = `(${count})`;
+    chip.appendChild(cnt);
+    chip.addEventListener("click", () => {
+      if (state.selectedTopics.has(topic)) state.selectedTopics.delete(topic);
+      else state.selectedTopics.add(topic);
+      chip.classList.toggle("active", state.selectedTopics.has(topic));
+      applyFilters();
+    });
+    container.appendChild(chip);
+  }
 }
 
 function buildLocationChips() {
@@ -226,6 +272,10 @@ function bindControls() {
       // one researcher at a time instead of jumping all at once.
       animateLayerChange();
       updateLayerCounts();
+      // Focus-mode neighbors depend on the active layer set — re-run filters
+      // so the highlighted ego network reflects the new layers.
+      applyFilters();
+      if (state.selectedId) renderDetail(state.selectedId);
     });
   }
 
@@ -239,11 +289,27 @@ function bindControls() {
     applyFilters();
   });
 
+  for (const btn of document.querySelectorAll(".scope-btn")) {
+    btn.addEventListener("click", () => {
+      state.searchScope = btn.dataset.scope;
+      document.querySelectorAll(".scope-btn").forEach((b) =>
+        b.classList.toggle("active", b === btn)
+      );
+      applyFilters();
+    });
+  }
+
   document.getElementById("reset-filters").addEventListener("click", () => {
     state.searchTerm = "";
+    state.searchScope = "all";
     state.selectedLocations.clear();
+    state.selectedTopics.clear();
     document.getElementById("search").value = "";
-    document.querySelectorAll("#location-chips .chip").forEach((c) => c.classList.remove("active"));
+    document.querySelectorAll("#location-chips .chip, #topic-chips .chip")
+      .forEach((c) => c.classList.remove("active"));
+    document.querySelectorAll(".scope-btn").forEach((b) =>
+      b.classList.toggle("active", b.dataset.scope === "all")
+    );
     applyFilters();
   });
 }
@@ -393,6 +459,15 @@ function buildGraph() {
       reflow();
     }));
 
+  // Double-click on empty canvas clears the current selection. Node clicks
+  // already handle selection themselves; we only fire when the dblclick target
+  // is the SVG root (not a node/edge inside it). d3.zoom owns dblclick for
+  // zoom-in by default, so we disable that and use it for clear-focus instead.
+  svg.on("dblclick.zoom", null);
+  svg.on("dblclick", (event) => {
+    if (event.target === svg.node()) clearSelection();
+  });
+
   renderEdges();
   updateLayerCounts();
 }
@@ -469,33 +544,16 @@ function animateLayerChange() {
 }
 
 function neighborIdsOf(id) {
-  // 1-hop neighbors across currently-active layers, plus the node itself.
-  const set = new Set([id]);
-  for (const layer of LAYERS) {
-    if (!state.active.has(layer)) continue;
-    const edges = state.edgesByNode[layer].get(id) || [];
-    for (const e of edges) set.add(e.otherId);
-  }
-  return set;
+  return neighborIdsOfPure(id, state.edgesByNode, state.active);
 }
 
 function applyFilters() {
-  const term = state.searchTerm;
-  const locs = state.selectedLocations;
-  const baseMatches = (n) => {
-    if (locs.size > 0 && !locs.has(n.location)) return false;
-    if (!term) return true;
-    const haystack = [
-      n.name,
-      n.primary_area,
-      n.secondary_area,
-      ...(n.keywords || []),
-      ...(n.auto_keywords || []),
-      ...(n.give || []),
-      ...(n.get || []),
-    ].join(" ").toLowerCase();
-    return haystack.includes(term);
-  };
+  const baseMatches = (n) => nodeMatchesFilters(n, {
+    searchTerm: state.searchTerm,
+    searchScope: state.searchScope,
+    selectedLocations: state.selectedLocations,
+    selectedTopics: state.selectedTopics,
+  });
 
   // Focus mode: when enabled, only the selected researcher and their direct
   // neighbors are considered "matching" — the rest fade out.

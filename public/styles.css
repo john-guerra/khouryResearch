@@ -234,6 +234,42 @@ body.detail-collapsed .detail { display: none; }
 .chip.active::before { background: rgba(14, 17, 22, 0.18); }
 .chip.active .count-paren { color: rgba(14, 17, 22, 0.7); }
 
+.filter-sub {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 14px 0 4px;
+  font-weight: 600;
+}
+.filter-sub-hint {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.7;
+}
+
+.scope-bar {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+.scope-btn {
+  flex: 1;
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  cursor: pointer;
+}
+.scope-btn.active {
+  background: var(--accent);
+  color: #0e1116;
+  border-color: var(--accent);
+}
+
 .reset {
   margin-top: 10px;
   padding: 6px 10px;
