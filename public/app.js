@@ -153,16 +153,6 @@ function initPanels() {
     if (e.target !== document.body) return;
     document.body.classList.add("controls-collapsed", "detail-collapsed");
   });
-  // Whenever the window crosses the 768px boundary, rebalance state so
-  // we don't end up with both mobile overlays open or both desktop columns
-  // collapsed by leftover state.
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) {
-      // Desktop: panels visible by default unless user explicitly collapsed
-      // (we don't have that distinction; simplest: open both when crossing up)
-      // Actually, keep current state — it's reasonable.
-    }
-  });
 }
 
 async function init() {

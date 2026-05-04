@@ -42,5 +42,5 @@ edge-visibility.png
 v7-default.png
 v7-zoomed.png
 
-# Local rsync deploy script (references a personal SSH key path)
+# Local rsync deploy script 
 update.sh

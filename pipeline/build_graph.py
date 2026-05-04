@@ -46,18 +46,6 @@ def top_k_edges(S: np.ndarray, k: int, floor: float) -> list[tuple[int, int, flo
     return out
 
 
-def explain_give_get(researchers, give_emb, get_emb, i: int, j: int) -> str:
-    """Pick the (give bullet of i, get bullet of j) pair with highest cosine."""
-    from sentence_transformers import util
-    gi_bullets = researchers[i].get("give") or []
-    gj_bullets = researchers[j].get("get") or []
-    if not gi_bullets or not gj_bullets:
-        return ""
-    # Re-encode bullets here so we don't need to persist per-bullet vectors.
-    # build_graph.py is only called when these were already computed; cheap to redo.
-    return ""  # placeholder; we'll compute in main where the model is available
-
-
 def explain_keyword(kws_a: list[str], kws_b: list[str]) -> str:
     common = sorted(set(kws_a) & set(kws_b))
     if not common:
