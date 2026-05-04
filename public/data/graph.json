@@ -910,9 +910,7 @@
       "give": [
         "Visualization expertise & collaboration",
         "Service-Learning teaching",
-        "Domain expertise is in the sciences (astronomy, physics, biology, medical imaging)",
-        "New collaborations: I want to help you make the best visualizations!",
-        "Research expertise in education"
+        "Domain expertise is in the sciences (astronomy, physics, biology, medical imaging)"
       ],
       "get": [],
       "primary_area": "Data Visualization Secondary Research Areas: HCI",
@@ -934,16 +932,16 @@
         "3d data and xr",
         "accessibility",
         "and visualization for social good",
-        "astronomy",
-        "collaborations want help",
         "cs education.",
         "domain expertise sciences",
-        "make best visualizations",
+        "learning teaching domain",
+        "medical imaging",
         "multidimensional data",
         "perception and cognition theory",
+        "sciences astronomy",
         "service learning teaching",
         "tree & network visualization",
-        "visualization expertise collaboration"
+        "visualization expertise"
       ],
       "provenance": "PPTX 2025"
     }
@@ -1504,34 +1502,34 @@
       },
       {
         "source": "michelle-borkin",
+        "target": "hazra-imran",
+        "score": 0.5923,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Visualization expertise & collaboration\"  →  \"Partnerships for multimodal sensing (affect, physiological signals, interaction data)\""
+      },
+      {
+        "source": "michelle-borkin",
         "target": "tehmina-amjad",
-        "score": 0.6316,
+        "score": 0.5857,
         "layer": "give_get",
         "directed": true,
         "why": "\"Visualization expertise & collaboration\"  →  \"Interdisciplinary collaborations (AI + science)\""
       },
       {
         "source": "michelle-borkin",
-        "target": "brianna-dym",
-        "score": 0.6307,
+        "target": "miguel-fuentes-cabrera",
+        "score": 0.5804,
         "layer": "give_get",
         "directed": true,
-        "why": "\"Visualization expertise & collaboration\"  →  \"Collaborators I can recommend student project seekers to!\""
-      },
-      {
-        "source": "michelle-borkin",
-        "target": "hazra-imran",
-        "score": 0.6299,
-        "layer": "give_get",
-        "directed": true,
-        "why": "\"Visualization expertise & collaboration\"  →  \"Partnerships for multimodal sensing (affect, physiological signals, interaction data)\""
+        "why": "\"Visualization expertise & collaboration\"  →  \"Collaborations in AI for social impact\""
       }
     ],
     "topic": [
       {
         "source": "melanie-tory",
         "target": "michelle-borkin",
-        "score": 0.6862,
+        "score": 0.6861,
         "layer": "topic",
         "directed": false,
         "why": ""
@@ -1579,7 +1577,7 @@
       {
         "source": "michael-correll",
         "target": "michelle-borkin",
-        "score": 0.7066,
+        "score": 0.7084,
         "layer": "topic",
         "directed": false,
         "why": ""
@@ -1715,7 +1713,7 @@
       {
         "source": "john-a-guerra-gomez",
         "target": "michelle-borkin",
-        "score": 0.6276,
+        "score": 0.6096,
         "layer": "topic",
         "directed": false,
         "why": ""
