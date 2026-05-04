@@ -12,6 +12,7 @@ import {
   buildEdgesByNode,
   neighborIdsOf as neighborIdsOfPure,
   nodeMatchesFilters,
+  hasActiveFilters as hasActiveFiltersPure,
 } from "./lib.js";
 
 const LAYER_LABELS = {
@@ -170,6 +171,12 @@ async function init() {
   buildTopicChips();
   bindControls();
   buildGraph();
+
+  // Deep-link support: if the URL already carries #<slug>, select that
+  // researcher after the graph is built. Then keep selection in sync with
+  // the back/forward buttons or any manual hash edit.
+  applyHashSelection();
+  window.addEventListener("hashchange", applyHashSelection);
 }
 
 function buildTopicChips() {
@@ -289,19 +296,60 @@ function bindControls() {
     });
   }
 
-  document.getElementById("reset-filters").addEventListener("click", () => {
-    state.searchTerm = "";
-    state.searchScope = "all";
-    state.selectedLocations.clear();
-    state.selectedTopics.clear();
-    document.getElementById("search").value = "";
-    document.querySelectorAll("#location-chips .chip, #topic-chips .chip")
-      .forEach((c) => c.classList.remove("active"));
-    document.querySelectorAll(".scope-btn").forEach((b) =>
-      b.classList.toggle("active", b.dataset.scope === "all")
-    );
-    applyFilters();
+  document.getElementById("reset-filters").addEventListener("click", resetFilters);
+  document.getElementById("empty-clear").addEventListener("click", resetFilters);
+
+  // Keyboard shortcuts: '/' focuses the search box, Esc clears selection
+  // first, then filters. Skip when the user is already typing in any input
+  // (search box, etc.) so we don't intercept their normal typing.
+  document.addEventListener("keydown", (event) => {
+    const tag = (event.target.tagName || "").toLowerCase();
+    const typingInInput = tag === "input" || tag === "textarea" || event.target.isContentEditable;
+
+    if (event.key === "/" && !typingInInput) {
+      event.preventDefault();
+      const search = document.getElementById("search");
+      search.focus();
+      search.select();
+      return;
+    }
+    if (event.key === "Escape") {
+      // Esc inside the search box first blurs it; otherwise it does nothing
+      // visible. Outside an input it cascades: selection → filters.
+      if (tag === "input") {
+        event.target.blur();
+        return;
+      }
+      if (state.selectedId) {
+        clearSelection();
+      } else if (hasActiveFilters()) {
+        resetFilters();
+      }
+    }
   });
+}
+
+function hasActiveFilters() {
+  return hasActiveFiltersPure({
+    searchTerm: state.searchTerm,
+    searchScope: state.searchScope,
+    selectedLocations: state.selectedLocations,
+    selectedTopics: state.selectedTopics,
+  });
+}
+
+function resetFilters() {
+  state.searchTerm = "";
+  state.searchScope = "all";
+  state.selectedLocations.clear();
+  state.selectedTopics.clear();
+  document.getElementById("search").value = "";
+  document.querySelectorAll("#location-chips .chip, #topic-chips .chip")
+    .forEach((c) => c.classList.remove("active"));
+  document.querySelectorAll(".scope-btn").forEach((b) =>
+    b.classList.toggle("active", b.dataset.scope === "all")
+  );
+  applyFilters();
 }
 
 function updateLayerCounts() {
@@ -559,6 +607,14 @@ function applyFilters() {
   linkGroup.selectAll("line.link").classed("dimmed", function () {
     return d3.select(this.parentNode).classed("dimmed");
   });
+
+  // Empty state: only triggered by filter/search/topic — focus mode always
+  // keeps the selected node visible, so it can't on its own produce zero
+  // visible nodes. Counting baseMatches keeps the message scoped to filters.
+  const baseVisible = state.nodes.reduce((acc, n) => acc + (baseMatches(n) ? 1 : 0), 0);
+  const showEmpty = baseVisible === 0 && hasActiveFilters();
+  const empty = document.getElementById("empty-state");
+  if (empty) empty.hidden = !showEmpty;
 }
 
 function updateFocusModeClass() {
@@ -579,6 +635,7 @@ function selectNode(id) {
   updateFocusModeClass();
   applyFilters();           // re-evaluate focus mode if it's on
   renderDetail(id);
+  syncHash(id);
 }
 
 function clearSelection() {
@@ -596,6 +653,41 @@ function clearSelection() {
   empty.className = "empty";
   empty.textContent = "Click any researcher to see their give/get bullets and top connections.";
   root.appendChild(empty);
+  syncHash(null);
+}
+
+// URL hash <-> selection sync. We use replaceState so clicking around doesn't
+// pollute the back stack with one entry per node, but still updates the
+// address bar so the URL is shareable. hashchange fires on back/forward and
+// on manual edits — those should drive the selection.
+function syncHash(id) {
+  const desired = id ? `#${id}` : "";
+  if (location.hash === desired) return;
+  // Guard against the ensuing hashchange driving us back into selectNode.
+  syncHash._suppress = true;
+  try {
+    if (id) {
+      history.replaceState(null, "", `${location.pathname}${location.search}#${id}`);
+    } else {
+      history.replaceState(null, "", `${location.pathname}${location.search}`);
+    }
+  } finally {
+    // Clear the flag on the next tick — replaceState doesn't fire hashchange,
+    // but a quick toggle protects us if a future browser ever does.
+    setTimeout(() => { syncHash._suppress = false; }, 0);
+  }
+}
+
+function applyHashSelection() {
+  if (syncHash._suppress) return;
+  const raw = decodeURIComponent(location.hash.slice(1));
+  if (!raw) {
+    if (state.selectedId) clearSelection();
+    return;
+  }
+  if (!state.nodeIndex.has(raw)) return;     // unknown slug — leave state alone
+  if (raw === state.selectedId) return;
+  selectNode(raw);
 }
 
 function setFocusOnSelection(on) {

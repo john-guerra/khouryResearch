@@ -115,6 +115,10 @@
 
   <main class="canvas">
     <svg id="graph"></svg>
+    <div id="empty-state" class="canvas-empty" hidden role="status" aria-live="polite">
+      <p class="canvas-empty-headline">No researchers match these filters.</p>
+      <button type="button" id="empty-clear" class="canvas-empty-clear">Clear filters</button>
+    </div>
   </main>
 
   <aside class="detail" id="detail">

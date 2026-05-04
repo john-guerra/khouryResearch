@@ -41,6 +41,7 @@ node_modules/
 edge-visibility.png
 v7-default.png
 v7-zoomed.png
+empty-state.png
 
 # Local rsync deploy script 
 update.sh
