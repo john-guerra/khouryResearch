@@ -12,6 +12,7 @@ import {
   buildEdgesByNode,
   neighborIdsOf,
   nodeMatchesFilters,
+  hasActiveFilters,
 } from "../public/lib.js";
 
 // ---------- Tiny fixture ----------------------------------------------------
@@ -209,6 +210,34 @@ test("filters: location + topic + search compose correctly", () => {
     })
   ).map((n) => n.id);
   assert.deepEqual(m, ["alice"]);
+});
+
+test("hasActiveFilters: empty == default state, anything set == active", () => {
+  assert.equal(hasActiveFilters({}), false);
+  assert.equal(hasActiveFilters({ searchTerm: "" }), false);
+  assert.equal(hasActiveFilters({ searchScope: "all" }), false);
+  assert.equal(hasActiveFilters({ selectedLocations: new Set() }), false);
+
+  // Any one of the four toggles flipping = active.
+  assert.equal(hasActiveFilters({ searchTerm: "viz" }), true);
+  assert.equal(hasActiveFilters({ searchScope: "give" }), true);
+  assert.equal(hasActiveFilters({ selectedLocations: new Set(["Boston"]) }), true);
+  assert.equal(hasActiveFilters({ selectedTopics: new Set(["data viz"]) }), true);
+});
+
+test("empty-state: triggers iff filters active AND zero base-matches", () => {
+  // Mirrors the condition wired in app.js applyFilters: showEmpty = hasActiveFilters
+  // && every node fails baseMatches. Test it as a composition.
+  const { nodes } = fixture();
+  const opts = { searchTerm: "no-such-term-anywhere" };
+  const visible = nodes.filter((n) => nodeMatchesFilters(n, opts)).length;
+  assert.equal(visible, 0);
+  assert.equal(hasActiveFilters(opts), true);
+  // → empty-state should show
+
+  // No filters at all + 0 nodes is not an empty-state: it's an empty corpus,
+  // a different condition we don't try to handle here.
+  assert.equal(hasActiveFilters({}), false);
 });
 
 test("filters: empty 'give' bullets don't false-match on an empty haystack", () => {

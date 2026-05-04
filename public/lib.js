@@ -56,6 +56,24 @@ export function neighborIdsOf(id, edgesByNode, activeLayers) {
   return set;
 }
 
+// Whether any filter (search, scope, location chips, topic chips) is non-default.
+// Used to decide whether 'Esc' should reset filters and whether the empty-state
+// overlay is appropriate (we only show it when the user actually narrowed).
+export function hasActiveFilters(opts) {
+  const {
+    searchTerm = "",
+    searchScope = "all",
+    selectedLocations = new Set(),
+    selectedTopics = new Set(),
+  } = opts || {};
+  return (
+    searchTerm !== "" ||
+    searchScope !== "all" ||
+    selectedLocations.size > 0 ||
+    selectedTopics.size > 0
+  );
+}
+
 // Decide whether a node matches the current filter state. Pure function so the
 // logic is testable without a DOM. Returns boolean.
 //
