@@ -18,7 +18,8 @@ GRAPH_PATH = REPO / "public" / "data" / "graph.json"
 
 LAYERS = ("give_get", "topic", "keyword")
 # Mirrors build_graph.py — keep these in sync if the floors change there.
-SCORE_FLOORS = {"give_get": 0.30, "topic": 0.40, "keyword": 0.10}
+# v1.2: give_get is CE-sigmoid; keyword is centroid cosine (replaces Jaccard).
+SCORE_FLOORS = {"give_get": 0.30, "topic": 0.40, "keyword": 0.55}
 TOP_K = 3
 
 
@@ -103,6 +104,13 @@ class GraphInvariants(unittest.TestCase):
                     key = tuple(sorted((e["source"], e["target"])))
                 self.assertNotIn(key, seen, f"{layer} duplicate edge: {key}")
                 seen.add(key)
+
+    def test_give_get_scores_are_cosine_range(self):
+        # give_get scores are bi-encoder bullet-level top-3-mean cosine → in [0, 1].
+        # Cross-encoder is used for ordering only; raw CE logits never ship.
+        for e in self.g["edges"]["give_get"]:
+            self.assertGreaterEqual(e["score"], 0.0, f"score < 0: {e}")
+            self.assertLessEqual(e["score"], 1.0, f"score > 1: {e}")
 
     def test_give_get_why_strings_nonempty(self):
         # The whole point of give→get edges is the human-readable "why" — if

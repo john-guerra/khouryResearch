@@ -23,6 +23,7 @@ const LAYER_LABELS = {
 
 const state = {
   data: null,
+  scoreRange: { give_get: [0.30, 0.65], topic: [0.40, 0.75], keyword: [0.60, 0.85] },
   active: new Set(["give_get"]),
   searchTerm: "",
   searchScope: "all", // 'all' | 'give' | 'get'
@@ -93,17 +94,41 @@ const DOMAIN_LERP = 0.12;                 // 0..1; higher = scale tracks faster 
 
 function lerp(a, b, t) { return a + (b - a) * t; }
 
-// Per-layer score normalization. Each layer has a different natural range
-// (give→get cosine ≈ 0.3–0.7, topic cosine ≈ 0.4–0.75, keyword Jaccard ≈ 0.08–0.3),
-// so a single linear opacity formula fades the keyword and topic layers into
-// invisibility. Normalize score to 0..1 inside each layer's range first.
-const SCORE_RANGE = {
-  give_get: [0.30, 0.70],
+// Per-layer score normalization. Each layer has a different natural range:
+//   give_get: cross-encoder sigmoid score ≈ 0.55–0.95 for real matches
+//   topic:    bi-encoder cosine ≈ 0.4–0.75
+//   keyword:  centroid cosine ≈ 0.6–0.9
+// These defaults are user-tunable in the controls panel — see #score-range
+// section. The live values live on state.scoreRange so changes re-style edges
+// without a graph rebuild.
+const DEFAULT_SCORE_RANGE = {
+  give_get: [0.30, 0.65],
   topic:    [0.40, 0.75],
-  keyword:  [0.08, 0.30],
+  keyword:  [0.60, 0.85],
 };
+const SCORE_RANGE_STORAGE_KEY = "khoury-score-range-v2";
+function loadScoreRange() {
+  try {
+    const raw = localStorage.getItem(SCORE_RANGE_STORAGE_KEY);
+    if (!raw) return structuredClone(DEFAULT_SCORE_RANGE);
+    const parsed = JSON.parse(raw);
+    // Sanity-check shape; fall back to defaults if malformed.
+    for (const layer of ["give_get", "topic", "keyword"]) {
+      if (!Array.isArray(parsed[layer]) || parsed[layer].length !== 2) {
+        return structuredClone(DEFAULT_SCORE_RANGE);
+      }
+    }
+    return parsed;
+  } catch {
+    return structuredClone(DEFAULT_SCORE_RANGE);
+  }
+}
+function saveScoreRange() {
+  try { localStorage.setItem(SCORE_RANGE_STORAGE_KEY, JSON.stringify(state.scoreRange)); }
+  catch { /* private mode / quota exceeded — ignore */ }
+}
 function normalizedScore(d) {
-  const [lo, hi] = SCORE_RANGE[d.layer] || [0, 1];
+  const [lo, hi] = state.scoreRange[d.layer] || [0, 1];
   return Math.max(0, Math.min(1, (d.score - lo) / Math.max(0.0001, hi - lo)));
 }
 function baseStrokeOpacity(d) { return 0.5 + normalizedScore(d) * 0.4; }   // 0.5 → 0.9
@@ -157,6 +182,7 @@ function initPanels() {
 }
 
 async function init() {
+  state.scoreRange = loadScoreRange();
   initPanels();
   const res = await fetch("data/graph.json");
   state.data = await res.json();
@@ -169,8 +195,11 @@ async function init() {
 
   buildLocationChips();
   buildTopicChips();
+  buildScoreRangeControls();
   bindControls();
   buildGraph();
+  updateLayerCounts();
+  updateViewTitle();
 
   // Deep-link support: if the URL already carries #<slug>, select that
   // researcher after the graph is built. Then keep selection in sync with
@@ -259,18 +288,120 @@ function buildLocationChips() {
   }
 }
 
+// Per-layer score-range sliders (lo, hi). Edges below lo render at the floor
+// opacity/width; edges at or above hi render at the cap. The bias toward
+// "always somewhat visible" (floor opacity 0.5) is intentional — even a thin
+// edge has signal. Changes live-update existing edges; values persist via
+// localStorage so a researcher's tuning survives reload.
+function buildScoreRangeControls() {
+  const container = document.getElementById("score-range");
+  if (!container) return;
+  while (container.firstChild) container.removeChild(container.firstChild);
+
+  for (const layer of LAYERS) {
+    const block = document.createElement("div");
+    block.className = "range-block";
+    const heading = document.createElement("div");
+    heading.className = "range-heading";
+    heading.innerHTML = "";
+    const swatch = document.createElement("span");
+    swatch.className = `range-swatch layer-${layer.replace("_", "-")}`;
+    const label = document.createElement("span");
+    label.textContent = LAYER_LABELS[layer];
+    heading.appendChild(swatch);
+    heading.appendChild(label);
+    block.appendChild(heading);
+
+    const [lo0, hi0] = state.scoreRange[layer];
+    const loInput = makeRangeInput("Faint at", lo0, (val) => {
+      // Clamp lo to never exceed hi - 0.01 so the normalized denominator stays valid.
+      const cur = state.scoreRange[layer];
+      state.scoreRange[layer] = [Math.min(val, cur[1] - 0.01), cur[1]];
+      onScoreRangeChange();
+    });
+    const hiInput = makeRangeInput("Bold at", hi0, (val) => {
+      const cur = state.scoreRange[layer];
+      state.scoreRange[layer] = [cur[0], Math.max(val, cur[0] + 0.01)];
+      onScoreRangeChange();
+    });
+    block.appendChild(loInput.row);
+    block.appendChild(hiInput.row);
+    block.dataset.layer = layer;
+    block._loInput = loInput;
+    block._hiInput = hiInput;
+    container.appendChild(block);
+  }
+
+  document.getElementById("reset-ranges").addEventListener("click", () => {
+    state.scoreRange = structuredClone(DEFAULT_SCORE_RANGE);
+    refreshScoreRangeUI();
+    onScoreRangeChange();
+  });
+}
+
+function makeRangeInput(label, value, onInput) {
+  const row = document.createElement("label");
+  row.className = "range-row";
+  const lbl = document.createElement("span");
+  lbl.className = "range-label";
+  lbl.textContent = label;
+  const slider = document.createElement("input");
+  slider.type = "range";
+  slider.min = "0";
+  slider.max = "1";
+  slider.step = "0.01";
+  slider.value = String(value);
+  const num = document.createElement("span");
+  num.className = "range-num";
+  num.textContent = value.toFixed(2);
+  slider.addEventListener("input", () => {
+    const v = parseFloat(slider.value);
+    num.textContent = v.toFixed(2);
+    onInput(v);
+  });
+  row.appendChild(lbl);
+  row.appendChild(slider);
+  row.appendChild(num);
+  return { row, slider, num };
+}
+
+function refreshScoreRangeUI() {
+  for (const block of document.querySelectorAll("#score-range .range-block")) {
+    const [lo, hi] = state.scoreRange[block.dataset.layer];
+    block._loInput.slider.value = String(lo);
+    block._loInput.num.textContent = lo.toFixed(2);
+    block._hiInput.slider.value = String(hi);
+    block._hiInput.num.textContent = hi.toFixed(2);
+  }
+}
+
+function onScoreRangeChange() {
+  saveScoreRange();
+  restyleEdges();
+}
+
+// Re-apply stroke-opacity / stroke-width based on current state.scoreRange.
+// Cheap: it just walks the existing edge selection — no force tick.
+function restyleEdges() {
+  linkGroup.selectAll("line.link")
+    .attr("stroke-opacity", (d) => baseStrokeOpacity(d))
+    .attr("stroke-width", (d) => baseStrokeWidth(d));
+}
+
 function bindControls() {
-  for (const checkbox of document.querySelectorAll("[data-layer]")) {
-    checkbox.addEventListener("change", () => {
-      const layer = checkbox.dataset.layer;
-      if (checkbox.checked) state.active.add(layer);
+  // Layer pills: a click toggles active state. Same downstream effects as the
+  // old checkbox listener — just driven by a button's class state.
+  for (const pill of document.querySelectorAll(".layer-pill[data-layer]")) {
+    pill.addEventListener("click", () => {
+      const layer = pill.dataset.layer;
+      const turningOn = !state.active.has(layer);
+      if (turningOn) state.active.add(layer);
       else state.active.delete(layer);
-      // Animated re-layout: stagger node release so the graph reorganizes
-      // one researcher at a time instead of jumping all at once.
+      pill.classList.toggle("active", turningOn);
+      pill.setAttribute("aria-pressed", String(turningOn));
       animateLayerChange();
       updateLayerCounts();
-      // Focus-mode neighbors depend on the active layer set — re-run filters
-      // so the highlighted ego network reflects the new layers.
+      updateViewTitle();
       applyFilters();
       if (state.selectedId) renderDetail(state.selectedId);
     });
@@ -355,6 +486,38 @@ function resetFilters() {
 function updateLayerCounts() {
   for (const layer of LAYERS) {
     document.getElementById(`count-${layer}`).textContent = state.data.edges[layer].length;
+  }
+}
+
+// Dynamic title above the chart. Surfaces what the user is currently looking
+// at: the active layer set + (if applicable) the selected researcher's name.
+// Kept short — the goal is "I see the title and know what these dots mean".
+function updateViewTitle() {
+  const el = document.getElementById("view-title");
+  if (!el) return;
+  const titles = {
+    give_get: "Give → Get matches",
+    topic: "Topic similarity",
+    keyword: "Shared keywords",
+  };
+  const active = LAYERS.filter((l) => state.active.has(l));
+  let layerPhrase;
+  if (active.length === 0) layerPhrase = "no connection layer active";
+  else if (active.length === 3) layerPhrase = "all connections";
+  else layerPhrase = active.map((l) => titles[l]).join(" + ");
+
+  if (state.selectedId) {
+    const node = state.nodeIndex.get(state.selectedId);
+    const name = node ? node.name : state.selectedId;
+    el.textContent = state.focusOnSelection
+      ? `${name}'s network — ${layerPhrase}`
+      : `${name} selected — ${layerPhrase}`;
+  } else {
+    // Sentence-case the leading word; `layerPhrase` already starts with a
+    // descriptor, but for the no-selection case we want a complete clause.
+    el.textContent = active.length === 0
+      ? "No connection layer active — turn one on above"
+      : `Showing ${layerPhrase}`;
   }
 }
 
@@ -635,6 +798,7 @@ function selectNode(id) {
   updateFocusModeClass();
   applyFilters();           // re-evaluate focus mode if it's on
   renderDetail(id);
+  updateViewTitle();
   syncHash(id);
 }
 
@@ -653,6 +817,7 @@ function clearSelection() {
   empty.className = "empty";
   empty.textContent = "Click any researcher to see their give/get bullets and top connections.";
   root.appendChild(empty);
+  updateViewTitle();
   syncHash(null);
 }
 
@@ -694,6 +859,7 @@ function setFocusOnSelection(on) {
   state.focusOnSelection = !!on;
   updateFocusModeClass();
   applyFilters();
+  updateViewTitle();
 }
 
 function showEdgeTooltip(event, d) {

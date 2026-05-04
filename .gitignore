@@ -42,6 +42,8 @@ edge-visibility.png
 v7-default.png
 v7-zoomed.png
 empty-state.png
+v1.2-default.png
+v1.2-selected.png
 
 # Local rsync deploy script 
 update.sh

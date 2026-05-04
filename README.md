@@ -115,9 +115,17 @@ edited `pipeline/`.
 
 ## How "give → get" matching works
 
-For each researcher A and each researcher B (A ≠ B), we compute the cosine similarity between A's mean "give" embedding and B's mean "get" embedding. The top-3 highest-scoring directed pairs (with score ≥ 0.30) become edges in the give→get layer.
+Each researcher's give-bullets and get-bullets are encoded individually with `multi-qa-MiniLM-L6-cos-v1` (a retrieval-trained bi-encoder). For every directed pair (A, B), the bullet-level similarity matrix `give_A @ get_B.T` gives a per-bullet-pair cosine; the per-edge score is the **mean of the top-3 cells** (or the max if either side has fewer than 3 bullets).
 
-The "why" string on each edge is the specific (give-bullet, get-bullet) pair with the highest pairwise cosine — i.e., the most concrete reason to believe A can help B. This is computed during graph build, not at hover time, so it's authored once and trusted by the UI.
+A `cross-encoder/ms-marco-MiniLM-L-6-v2` reranker then orders the top-10 candidates per researcher: it scores each (best-bullet-give-A, best-bullet-get-B) pair and the top-3 by CE confidence become edges (filtered to bi-encoder score ≥ 0.30). The cross-encoder lifts ordering precision; the visible score stays in the bi-encoder cosine range so it maps cleanly to opacity.
+
+The "why" string on each edge is the actual (give-bullet, get-bullet) pair the cross-encoder picked — verbatim text, copied at build time so it's trusted by the UI.
+
+## How topic and keyword similarity work
+
+**Topic layer** (undirected): bi-encoder cosine over each researcher's combined `primary_area + secondary_area + keywords + bullets`, using `all-MiniLM-L6-v2`.
+
+**Keyword layer** (undirected): each researcher's keyword set (explicit + KeyBERT-extracted phrases) is mean-pooled to a centroid embedding; edges are top-3 centroid-cosine pairs above 0.55. The "why" string is the highest-cosine phrase pair across the two sets — e.g., "data viz ↔ information visualization", which lexical Jaccard would miss entirely.
 
 ## License
 
