@@ -250,16 +250,16 @@
       "3d data and xr",
       "accessibility",
       "and visualization for social good",
+      "astronomy",
+      "collaborations want help",
       "cs education.",
       "domain expertise sciences",
-      "learning teaching domain",
-      "medical imaging",
+      "make best visualizations",
       "multidimensional data",
       "perception and cognition theory",
-      "sciences astronomy",
       "service learning teaching",
       "tree & network visualization",
-      "visualization expertise"
+      "visualization expertise collaboration"
     ]
   ],
   "token_sets": [
@@ -703,14 +703,17 @@
     [
       "accessibility",
       "astronomy",
+      "best",
       "cognition",
+      "collaboration",
+      "collaborations",
       "data",
       "domain",
       "education",
       "good",
-      "imaging",
+      "help",
       "learning",
-      "medical",
+      "make",
       "multidimensional",
       "network",
       "perception",
@@ -720,7 +723,9 @@
       "teaching",
       "theory",
       "tree",
-      "visualization"
+      "visualization",
+      "visualizations",
+      "want"
     ]
   ]
 }

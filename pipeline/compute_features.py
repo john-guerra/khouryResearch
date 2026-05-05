@@ -100,14 +100,6 @@ def topk_mean_score(M: np.ndarray, k: int) -> float:
     return float(top.mean())
 
 
-def jaccard(set_a: set[str], set_b: set[str]) -> float:
-    if not set_a or not set_b:
-        return 0.0
-    inter = len(set_a & set_b)
-    union = len(set_a | set_b)
-    return inter / union if union else 0.0
-
-
 # Light stopword list for tokenizing keyword phrases.
 _TOKEN_STOP = {
     "the", "and", "or", "of", "for", "in", "on", "at", "to", "with", "a", "an",
