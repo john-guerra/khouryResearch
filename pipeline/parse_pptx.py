@@ -32,7 +32,7 @@ URL_RE = re.compile(r"https?://\S+")
 NAME_LOC_RE = re.compile(r"^(?P<name>[^()\n]+?)\s*\((?P<loc>[^)]+)\)\s*$")
 
 GIVE_HEADERS = ("WHAT YOU CAN GIVE", "GIVE:", "GIVE")
-GET_HEADERS = ("WHAT YOU WANT TO GET", "GET:", "GET")
+GET_HEADERS = ("WHAT YOU WANT TO GET", "WHAT YOU CAN GET", "GET:", "GET")
 
 
 @dataclass

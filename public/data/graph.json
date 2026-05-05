@@ -912,7 +912,10 @@
         "Service-Learning teaching",
         "Domain expertise is in the sciences (astronomy, physics, biology, medical imaging)"
       ],
-      "get": [],
+      "get": [
+        "New collaborations: I want to help you make the best visualizations!",
+        "Research expertise in education"
+      ],
       "primary_area": "Data Visualization Secondary Research Areas: HCI",
       "secondary_area": "",
       "keywords": [
@@ -932,16 +935,16 @@
         "3d data and xr",
         "accessibility",
         "and visualization for social good",
+        "astronomy",
+        "collaborations want help",
         "cs education.",
         "domain expertise sciences",
-        "learning teaching domain",
-        "medical imaging",
+        "make best visualizations",
         "multidimensional data",
         "perception and cognition theory",
-        "sciences astronomy",
         "service learning teaching",
         "tree & network visualization",
-        "visualization expertise"
+        "visualization expertise collaboration"
       ],
       "provenance": "PPTX 2025"
     }
@@ -982,19 +985,19 @@
       },
       {
         "source": "brianna-dym",
+        "target": "michelle-borkin",
+        "score": 0.3967,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in qualitative research - interviews, discourse analysis\"  →  \"Research expertise in education\""
+      },
+      {
+        "source": "brianna-dym",
         "target": "mohit-singhal",
         "score": 0.3373,
         "layer": "give_get",
         "directed": true,
         "why": "\"Privacy & Safety in HCI\"  →  \"Collaborations in HCI related to social media.\""
-      },
-      {
-        "source": "brianna-dym",
-        "target": "aanchan-mohan",
-        "score": 0.3554,
-        "layer": "give_get",
-        "directed": true,
-        "why": "\"Expertise in qualitative research - interviews, discourse analysis\"  →  \"Collaboration in research with atypical speakers\""
       },
       {
         "source": "michael-correll",
@@ -1003,14 +1006,6 @@
         "layer": "give_get",
         "directed": true,
         "why": "\"Datavis design skills\"  →  \"Data monitoring applications\""
-      },
-      {
-        "source": "michael-correll",
-        "target": "tehmina-amjad",
-        "score": 0.4646,
-        "layer": "give_get",
-        "directed": true,
-        "why": "\"Datavis design skills\"  →  \"Student research opportunities and datasets\""
       },
       {
         "source": "aanchan-mohan",
@@ -1038,6 +1033,14 @@
       },
       {
         "source": "hazra-imran",
+        "target": "michelle-borkin",
+        "score": 0.455,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in programming and SQL education research (classroom deployments, real learners)\"  →  \"Research expertise in education\""
+      },
+      {
+        "source": "hazra-imran",
         "target": "felix-muzny",
         "score": 0.4048,
         "layer": "give_get",
@@ -1053,12 +1056,12 @@
         "why": "\"Study design + empirical evaluation (HCI / AIED / CS education contexts)\"  →  \"Collaborators with an orientation towards inclusive CS education\""
       },
       {
-        "source": "hazra-imran",
-        "target": "joydeep-mitra",
-        "score": 0.5127,
+        "source": "felix-muzny",
+        "target": "michelle-borkin",
+        "score": 0.4015,
         "layer": "give_get",
         "directed": true,
-        "why": "\"Expertise in programming and SQL education research (classroom deployments, real learners)\"  →  \"Explore/Develop research ideas in the software engineering/computer science education space\""
+        "why": "\"Experience with education research and humanistic inquiry\"  →  \"Research expertise in education\""
       },
       {
         "source": "felix-muzny",
@@ -1075,14 +1078,6 @@
         "layer": "give_get",
         "directed": true,
         "why": "\"Connections to digital humanists in English/Journalism/etc.\"  →  \"Collaborators, esp. In digital humanities, bioinformatics\""
-      },
-      {
-        "source": "felix-muzny",
-        "target": "tehmina-amjad",
-        "score": 0.3893,
-        "layer": "give_get",
-        "directed": true,
-        "why": "\"Experience with education research and humanistic inquiry\"  →  \"Student research opportunities and datasets\""
       },
       {
         "source": "albert-lionelle",
@@ -1262,19 +1257,19 @@
       },
       {
         "source": "mohit-singhal",
+        "target": "michelle-borkin",
+        "score": 0.3562,
+        "layer": "give_get",
+        "directed": true,
+        "why": "\"Expertise in data analysis and creation of tools to obtain social media data\"  →  \"Research expertise in education\""
+      },
+      {
+        "source": "mohit-singhal",
         "target": "logan-schmidt",
         "score": 0.57,
         "layer": "give_get",
         "directed": true,
         "why": "\"Expertise in understanding security and privacy concerns of users on social media platforms and disentangling causal insights.\"  →  \"Collaborators interested in studying socio-technical systems and their impact on privacy\""
-      },
-      {
-        "source": "mohit-singhal",
-        "target": "tala-talaei-khoei",
-        "score": 0.4206,
-        "layer": "give_get",
-        "directed": true,
-        "why": "\"Expertise in understanding security and privacy concerns of users on social media platforms and disentangling causal insights.\"  →  \"Partnerships focused on AI for social impact, particularly in areas related to security, ethics, and societal well-being\""
       },
       {
         "source": "tehmina-amjad",
@@ -1374,11 +1369,11 @@
       },
       {
         "source": "jessica-staddon",
-        "target": "melanie-tory",
-        "score": 0.3494,
+        "target": "michelle-borkin",
+        "score": 0.3991,
         "layer": "give_get",
         "directed": true,
-        "why": "\"Privacy-enhancing technologies\"  →  \"Data monitoring applications\""
+        "why": "\"Experience with research and safety operations in industry\"  →  \"Research expertise in education\""
       },
       {
         "source": "youna-jung",
@@ -1521,7 +1516,7 @@
       {
         "source": "melanie-tory",
         "target": "michelle-borkin",
-        "score": 0.6861,
+        "score": 0.6887,
         "layer": "topic",
         "directed": false,
         "why": ""
@@ -1569,7 +1564,7 @@
       {
         "source": "michael-correll",
         "target": "michelle-borkin",
-        "score": 0.7084,
+        "score": 0.7079,
         "layer": "topic",
         "directed": false,
         "why": ""
@@ -1705,7 +1700,7 @@
       {
         "source": "john-a-guerra-gomez",
         "target": "michelle-borkin",
-        "score": 0.6096,
+        "score": 0.6312,
         "layer": "topic",
         "directed": false,
         "why": ""
@@ -1921,20 +1916,20 @@
     ],
     "keyword": [
       {
+        "source": "melanie-tory",
+        "target": "michelle-borkin",
+        "score": 0.7369,
+        "layer": "keyword",
+        "directed": false,
+        "why": "new collaborations proposals ↔ collaborations want help"
+      },
+      {
         "source": "john-a-guerra-gomez",
         "target": "melanie-tory",
         "score": 0.7261,
         "layer": "keyword",
         "directed": false,
         "why": "ai coding ↔ human ai interaction"
-      },
-      {
-        "source": "melanie-tory",
-        "target": "michelle-borkin",
-        "score": 0.7177,
-        "layer": "keyword",
-        "directed": false,
-        "why": "visual analytics ↔ visualization expertise"
       },
       {
         "source": "melanie-tory",
@@ -1969,20 +1964,20 @@
         "why": "nontraditional cs education ↔ cs education research"
       },
       {
+        "source": "michael-correll",
+        "target": "michelle-borkin",
+        "score": 0.755,
+        "layer": "keyword",
+        "directed": false,
+        "why": "information visualization ↔ make best visualizations"
+      },
+      {
         "source": "john-a-guerra-gomez",
         "target": "michael-correll",
         "score": 0.7488,
         "layer": "keyword",
         "directed": false,
         "why": "information visualization prototypes ↔ information visualization"
-      },
-      {
-        "source": "michael-correll",
-        "target": "michelle-borkin",
-        "score": 0.7266,
-        "layer": "keyword",
-        "directed": false,
-        "why": "information visualization ↔ visualization expertise"
       },
       {
         "source": "deahan-yu",
@@ -2034,11 +2029,11 @@
       },
       {
         "source": "hazra-imran",
-        "target": "michelle-borkin",
-        "score": 0.7065,
+        "target": "oscar-veliz",
+        "score": 0.6893,
         "layer": "keyword",
         "directed": false,
-        "why": "aied cs education ↔ cs education."
+        "why": "classroom, education"
       },
       {
         "source": "felix-muzny",
@@ -2114,11 +2109,11 @@
       },
       {
         "source": "john-a-guerra-gomez",
-        "target": "tala-talaei-khoei",
-        "score": 0.7038,
+        "target": "michelle-borkin",
+        "score": 0.7243,
         "layer": "keyword",
         "directed": false,
-        "why": "ai coding interdisciplinary ↔ partnerships focused ai"
+        "why": "information visualization prototypes ↔ visualization expertise collaboration"
       },
       {
         "source": "miguel-fuentes-cabrera",
@@ -2361,12 +2356,12 @@
         "why": "computing education ↔ education"
       },
       {
-        "source": "lama-hamandi",
-        "target": "michelle-borkin",
-        "score": 0.7121,
+        "source": "john-a-guerra-gomez",
+        "target": "lama-hamandi",
+        "score": 0.698,
         "layer": "keyword",
         "directed": false,
-        "why": "computing education ↔ cs education."
+        "why": "ai coding ↔ courses adaptive ai"
       }
     ]
   },

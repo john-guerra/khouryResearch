@@ -117,7 +117,7 @@ edited `pipeline/`.
 
 Each researcher's give-bullets and get-bullets are encoded individually with `multi-qa-MiniLM-L6-cos-v1` (a retrieval-trained bi-encoder). For every directed pair (A, B), the bullet-level similarity matrix `give_A @ get_B.T` gives a per-bullet-pair cosine; the per-edge score is the **mean of the top-3 cells** (or the max if either side has fewer than 3 bullets).
 
-A `cross-encoder/ms-marco-MiniLM-L-6-v2` reranker then orders the top-10 candidates per researcher: it scores each (best-bullet-give-A, best-bullet-get-B) pair and the top-3 by CE confidence become edges (filtered to bi-encoder score ≥ 0.30). The cross-encoder lifts ordering precision; the visible score stays in the bi-encoder cosine range so it maps cleanly to opacity.
+A `cross-encoder/ms-marco-MiniLM-L-6-v2` reranker then orders the top-10 candidates per researcher: it scores each (best-bullet-give-A, best-bullet-get-B) pair and the top-3 by CE confidence become edges (filtered to bi-encoder score ≥ 0.30). The cross-encoder lifts ordering precision; the visible score is the sigmoid of the CE logit (range 0–1, typical strong matches ≈ 0.55–0.95) and maps to edge opacity in the UI.
 
 The "why" string on each edge is the actual (give-bullet, get-bullet) pair the cross-encoder picked — verbatim text, copied at build time so it's trusted by the UI.
 

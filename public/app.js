@@ -391,14 +391,16 @@ function restyleEdges() {
 function bindControls() {
   // Layer pills: a click toggles active state. Same downstream effects as the
   // old checkbox listener — just driven by a button's class state.
-  for (const pill of document.querySelectorAll(".layer-pill[data-layer]")) {
+  const allPills = [...document.querySelectorAll(".layer-pill[data-layer]")];
+  for (const pill of allPills) {
     pill.addEventListener("click", () => {
       const layer = pill.dataset.layer;
-      const turningOn = !state.active.has(layer);
-      if (turningOn) state.active.add(layer);
-      else state.active.delete(layer);
-      pill.classList.toggle("active", turningOn);
-      pill.setAttribute("aria-pressed", String(turningOn));
+      state.active = new Set([layer]);
+      for (const p of allPills) {
+        const on = p.dataset.layer === layer;
+        p.classList.toggle("active", on);
+        p.setAttribute("aria-pressed", String(on));
+      }
       animateLayerChange();
       updateLayerCounts();
       updateViewTitle();

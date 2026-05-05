@@ -641,7 +641,10 @@
       "Service-Learning teaching",
       "Domain expertise is in the sciences (astronomy, physics, biology, medical imaging)"
     ],
-    "get": [],
+    "get": [
+      "New collaborations: I want to help you make the best visualizations!",
+      "Research expertise in education"
+    ],
     "primary_area": "Data Visualization Secondary Research Areas: HCI",
     "secondary_area": "",
     "keywords": [
